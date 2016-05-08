@@ -11,6 +11,7 @@ section {
 	margin: 0; padding: 10px;
 	font-size: 300%;
 	font-family: Liberation Sans;
+	font-weight: bold;
 }
 
 .current {
