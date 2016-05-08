@@ -1,10 +1,40 @@
 <!doctype html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OHP slides</title>
 <link rel="stylesheet" href="slides.css">
+<script>
+function keypress(event)
+{
+	var slide = document.getElementsByClassName("current")[0];
+	var lastslide = slide;
+	switch (event.keyIdentifier) /* NOT OFFICIALLY SUPPORTED */
+	{
+		case "U+0020":
+		case "Right":
+			do
+			{
+				slide = slide.nextSibling;
+				if (!slide) return; //End of slides, stop
+			} while (slide.nodeName != "SECTION");
+			break;
+		case "Left":
+			do
+			{
+				slide = slide.previousSibling;
+				if (!slide) return; //End of slides, stop
+			} while (slide.nodeName != "SECTION");
+			break;
+		default:
+			return;
+	}
+	lastslide.classList.remove("current");
+	slide.classList.add("current");
+}
+</script>
 </head>
-<body>
+<body onkeydown="keypress(event)">
 <section class="black current"></section>
 <section>
 <h1>Crown Him With Many Crowns</h1>
