@@ -24,3 +24,7 @@ section {
 h1 {
 	text-align: center;
 }
+
+pre {
+	font-family: inherit;
+}
