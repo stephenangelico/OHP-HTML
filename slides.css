@@ -6,9 +6,11 @@ section {
 	width: 100%;
 	height: 100%;
 	display: none;
-	background-color: blue;
-	color: yellow;
+	background-color: #202060;
+	color: #F0F000;
 	margin: 0; padding: 10px;
+	font-size: 300%;
+	font-family: Liberation Sans;
 }
 
 .current {
