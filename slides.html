@@ -9,24 +9,15 @@ var curslide;
 function keypress(event)
 {
 	var slide = curslide, lastslide = curslide;
+	var sib = "previousSibling";
 	switch (event.keyIdentifier) /* NOT OFFICIALLY SUPPORTED */
 	{
 		case "U+0020":
 		case "Right":
 		case "PageDown":
-			do
-			{
-				slide = slide.nextSibling;
-				if (!slide) return; //End of slides, stop
-			} while (slide.nodeName != "SECTION");
-			break;
+			sib = "nextSibling";
 		case "Left":
 		case "PageUp":
-			do
-			{
-				slide = slide.previousSibling;
-				if (!slide) return; //End of slides, stop
-			} while (slide.nodeName != "SECTION");
 			break;
 		case "U+00BE": //Screen-blank
 			slide.classList.toggle("current");
@@ -39,6 +30,11 @@ function keypress(event)
 			console.log(event);
 			return;
 	}
+	do
+	{
+		slide = slide[sib];
+		if (!slide) return; //End of slides, stop
+	} while (slide.nodeName != "SECTION");
 	lastslide.classList.remove("current");
 	slide.classList.add("current");
 	curslide = slide;
