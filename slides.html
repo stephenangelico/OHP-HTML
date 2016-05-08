@@ -30,6 +30,10 @@ function keypress(event)
 			break;
 		case "U+00BE": //Screen-blank
 			slide.classList.toggle("current");
+			//Use the Blank button to stop videos
+			var videos = slide.getElementsByTagName("video");
+			for (var i=0; i<videos.length; ++i)
+				videos[i].pause();
 			return;
 		default:
 			console.log(event);
@@ -38,6 +42,14 @@ function keypress(event)
 	lastslide.classList.remove("current");
 	slide.classList.add("current");
 	curslide = slide;
+	//Autoplay videos on arrival
+	var videos = slide.getElementsByTagName("video");
+	for (var i=0; i<videos.length; ++i)
+		videos[i].play();
+	//And pause on departure (doesn't rewind though)
+	var videos = lastslide.getElementsByTagName("video");
+	for (var i=0; i<videos.length; ++i)
+		videos[i].pause();
 }
 
 function findfirst()
@@ -218,6 +230,14 @@ He does not change, and you are dear;
 only believe and Christ shall be
 your All-in-All eternally.
 <cite>John Samuel Bewley Monsell 1811-1875</cite>
+</section>
+<section class="black"></section>
+<section>
+<h1>Video below</h1>
+<video controls>
+<source src="/video/Clips/ButAGirl - The Lost Chord.mkv">
+</video>
+<cite>Video above</cite>
 </section>
 <section class="black"></section>
 </body>
