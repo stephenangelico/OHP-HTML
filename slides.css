@@ -1,0 +1,20 @@
+body {
+	margin: 0; padding: 0;
+}
+section {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	display: none;
+	background-color: blue;
+	color: yellow;
+	margin: 0; padding: 10px;
+}
+
+.current {
+	display: block;
+}
+
+.black {
+	background-color: black;
+}
