@@ -28,6 +28,9 @@ function keypress(event)
 				if (!slide) return; //End of slides, stop
 			} while (slide.nodeName != "SECTION");
 			break;
+		case "U+00BE": //Screen-blank
+			slide.classList.toggle("current");
+			return;
 		default:
 			console.log(event);
 			return;
