@@ -13,6 +13,7 @@ function keypress(event)
 	{
 		case "U+0020":
 		case "Right":
+		case "PageDown":
 			do
 			{
 				slide = slide.nextSibling;
@@ -20,6 +21,7 @@ function keypress(event)
 			} while (slide.nodeName != "SECTION");
 			break;
 		case "Left":
+		case "PageUp":
 			do
 			{
 				slide = slide.previousSibling;
@@ -27,6 +29,7 @@ function keypress(event)
 			} while (slide.nodeName != "SECTION");
 			break;
 		default:
+			console.log(event);
 			return;
 	}
 	lastslide.classList.remove("current");
