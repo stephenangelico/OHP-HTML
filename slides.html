@@ -35,10 +35,15 @@ function keypress(event)
 	lastslide.classList.remove("current");
 	slide.classList.add("current");
 }
+
+function findfirst()
+{
+	document.getElementsByTagName("section")[0].classList.add("current");
+}
 </script>
 </head>
-<body onkeydown="keypress(event)">
-<section class="black current"></section>
+<body onkeydown="keypress(event)" onload="findfirst()">
+<section class="black"></section>
 <section>
 <h1>Crown Him With Many Crowns</h1>
 <p>Crown Him with many crowns,<br>
