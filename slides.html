@@ -5,10 +5,10 @@
 <title>OHP slides</title>
 <link rel="stylesheet" href="slides.css">
 <script>
+var curslide;
 function keypress(event)
 {
-	var slide = document.getElementsByClassName("current")[0];
-	var lastslide = slide;
+	var slide = curslide, lastslide = curslide;
 	switch (event.keyIdentifier) /* NOT OFFICIALLY SUPPORTED */
 	{
 		case "U+0020":
@@ -34,11 +34,13 @@ function keypress(event)
 	}
 	lastslide.classList.remove("current");
 	slide.classList.add("current");
+	curslide = slide;
 }
 
 function findfirst()
 {
-	document.getElementsByTagName("section")[0].classList.add("current");
+	curslide = document.getElementsByTagName("section")[0];
+	curslide.classList.add("current");
 }
 </script>
 </head>
