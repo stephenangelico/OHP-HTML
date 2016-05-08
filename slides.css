@@ -28,3 +28,10 @@ h1 {
 	text-align: center;
 	margin: 0; padding: 0;
 }
+
+cite {
+	font-size: 25%;
+	position: fixed;
+	right: 1em;
+	bottom: 1em;
+}
