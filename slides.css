@@ -41,11 +41,10 @@ cite {
 /* Scripture references... they're the address of the passage, right? :) */
 address {
 	font-style: normal;
-	font-size: 175%;
+	font-size: 200%;
 	position: absolute;
 	top: 50%;
 	width: 100%;
-	margin: -1em 0 0 0;
-	padding: 0.25em;
+	margin: -1.4em 0 0 0;
 	text-align: center;
 }
