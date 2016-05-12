@@ -25,6 +25,10 @@ section {
 	background-color: black;
 }
 
+.refrain {
+	font-style: italic;
+}
+
 h1 {
 	text-align: center;
 	margin: 0; padding: 0;
