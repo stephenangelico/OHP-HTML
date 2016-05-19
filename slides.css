@@ -17,6 +17,10 @@ section {
 	white-space: pre-line;
 }
 
+p { margin-left: -2em; 
+ text-indent: 2em 
+ }
+ 
 .current {
 	display: block;
 }
