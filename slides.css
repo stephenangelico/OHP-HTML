@@ -4,6 +4,7 @@ magic number as well. This is because a width of 100% is the entire screen,
 but we want to have 10px of padding on the sections in all cases. So "full
 screen" now has to become "full screen minus the padding". If the padding is
 ever changed, update all those calculations.
+Indent and outdent managed by two styles for verses
 */
 body {
 	margin: 0; padding: 0;
@@ -22,6 +23,11 @@ section {
 	font-family: Liberation Sans;
 	font-weight: bold;
 	white-space: pre-line;
+	text-indent: 4em;
+}
+
+p1 {
+	text-indent: 0;
 }
 
  
