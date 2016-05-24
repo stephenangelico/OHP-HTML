@@ -23,11 +23,7 @@ section {
 	font-family: Liberation Sans;
 	font-weight: bold;
 	white-space: pre-line;
-	text-indent: 4em;
-}
-
-p::first-line {
-	text-indent: 0;
+	
 }
 
  
