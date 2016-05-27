@@ -18,8 +18,8 @@ section {
 	background-color: #101040;
 	color: #F0F0C0;
 	margin: 0;
-	padding: 10px;
-	font-size: 300%;
+	padding: 20px;
+	font-size: 280%;
 	font-family: Liberation Sans;
 	font-weight: bold;
 	white-space: pre-line;
@@ -46,7 +46,7 @@ h1,h2,h3 {
 
 /* Used for copyright notices */
 cite {
-	font-size: 25%;
+	font-size: 40%;
 	position: fixed;
 	right: 1em;
 	bottom: 1em;
