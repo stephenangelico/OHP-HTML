@@ -20,7 +20,7 @@ section {
 	margin: 0;
 	padding: 20px;
 	font-size: 250%;
-	font-family: Liberation Sans;
+	font-family: "Liberation Sans", sans;
 	font-weight: bold;
 	line-height: 125%;
 	white-space: pre-line;
