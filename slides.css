@@ -92,3 +92,7 @@ address {
 	text-align: center;
 	line-height: 150%;
 }
+
+.flow {
+	float: left;
+}
