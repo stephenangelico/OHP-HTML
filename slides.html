@@ -16,8 +16,25 @@ function keypress(event)
 		case "Right":
 		case "PageDown":
 			sib = "nextSibling";
+			//See if there are any <aside> blocks still hidden. If so,
+			//unhide one and that's it.
+			var asides = slide.getElementsByTagName("aside");
+			for (var i=0; i<asides.length; ++i) if (!asides[i].classList.contains("current"))
+			{
+				asides[i].classList.add("current");
+				return;
+			}
+			break;
 		case "Left":
 		case "PageUp":
+			//See if there are any visible <aside> blocks. If so,
+			//hide one and that's it.
+			var asides = slide.getElementsByTagName("aside");
+			for (var i=asides.length-1; i>=0; --i) if (asides[i].classList.contains("current"))
+			{
+				asides[i].classList.remove("current");
+				return;
+			}
 			break;
 		case "U+00BE": //Screen-blank
 			slide.classList.toggle("current");
@@ -216,12 +233,12 @@ God the first and God the last.
 <section data-bg="LostAtSea.png">
 <footer>GOD'S QUIET PRESENCE</footer>
 </section>
-
 <section>
 How do you speak to your heart?
-
+<aside>
 Joe Thorn (<i>Note to Self</i>):
 “…and even in the darkest times of life when he seems silent, he is with you to guide and protect you. … You can rest on what he has revealed of himself in his Word.”
+</aside>
 </section>
 <section>
 <i>God is still in control.</i>
@@ -232,28 +249,27 @@ He uses even David’s foolishness to bring about the circumstances where David 
 <u>2. When you think things are getting better, they may not be.</u>
 
 1 Samuel 30:4:   So David and his men wept aloud until they had no strength left to weep.
-But God’s presence or absence, His favour or displeasure, cannot be judged by circumstances.
+<aside>But God’s presence or absence, His favour or displeasure, cannot be judged by circumstances.</aside>
 </section>
 <section>
 <u>3. When your strength is gone, God lifts you up.</u>
 
 1 Samuel 30:6:  …But David found strength in the Lord his God.
-
-To find strength in the Lord is to preach His word to your own heart; to remember His promises and His unwavering faithfulness.
+<aside>To find strength in the Lord is to preach His word to your own heart; to remember His promises and His unwavering faithfulness.</aside>
 </section>
 <section>
 The recovery of everything taken by the Amalekites is “what the Lord has given us.”
-
+<aside>
 Psalm 139:7b-10:
 ⁷ Where can I flee from your presence?
 ⁸ If I go up to the heavens, you are there; if I make my bed in the depths, you are there.
 ⁹ If I rise on the wings of the dawn, if I settle on the far side of the sea,
 ¹⁰ even there your hand will guide me, your right hand will hold me fast.
+</aside>
 </section>
 <section>
 <img src="Puzzle.png" class="flow"> In the blank pieces of life, when you fail to see evidence of God’s presence, He is just as surely holding your life securely in His hands and working out the very best for you.
-
-One day we will stand in awe as we look back, and say <i>“He has done all things well.”</i>
+<aside>One day we will stand in awe as we look back, and say <i>“He has done all things well.”</i></aside>
 </section>
 
 <section class="black"></section>
