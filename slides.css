@@ -40,13 +40,13 @@ section {
 	font-style: italic;
 }
 
-.splash {
-	background-image: url(SolidDirt.png);
+.bgimg {
 	background-size: cover;
 	background-position: bottom;
 	color: white;
 }
-.splash footer {
+
+footer {
 	position: absolute;
 	bottom: 5%;
 	width: 100%;

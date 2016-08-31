@@ -55,14 +55,20 @@ function findfirst()
 	curslide.classList.add("current");
 	for (var i=0; i<sections.length; ++i)
 	{
-		if (sections[i].classList.contains("showcase"))
-			sections[i].innerHTML = '<div style="background-image: url(' + sections[i].innerHTML + ')"></div>';
+		var sec = sections[i];
+		if (sec.classList.contains("showcase"))
+			sec.innerHTML = '<div style="background-image: url(' + sec.innerHTML + ')"></div>';
+		if (sec.dataset.bg)
+		{
+			sec.style.backgroundImage = 'url(' + sec.dataset.bg + ')';
+			sec.classList.add("bgimg"); //Apply other styles there, for simplicity
+		}
 	}
 }
 </script>
 </head>
 <body onkeydown="keypress(event)" onload="findfirst()">
-<section class="splash">
+<section data-bg="SolidDirt.png">
 <h3><img src="Cross.png"> Ashburton Presbyterian Church</h3>
 <p></p>
 <h1>Welcome</h1>
