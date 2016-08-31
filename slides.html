@@ -50,8 +50,11 @@ function keypress(event)
 
 function findfirst()
 {
-	curslide = document.getElementsByTagName("section")[0];
+	var sections = document.getElementsByTagName("section");
+	curslide = sections[0];
 	curslide.classList.add("current");
+	for (var i=0; i<sections.length; ++i) if (sections[i].className == "showcase")
+		sections[i].innerHTML = '<div style="background-image: url(' + sections[i].innerHTML + ')"></div>';
 }
 </script>
 </head>
@@ -116,6 +119,9 @@ through all eternity!
 <cite>© Jubilate Hymns Ltd, Matthew Bridges 1800-1894 and Godfrey Thring 1823-1903</cite>
 </section>
 <section class="black"></section>
+<section class="showcase">
+AfghanNewYear.png
+</section>
 <section><address>2 Corinthians 6:1-10
 page 819</address></section>
 <section class="black"></section>
