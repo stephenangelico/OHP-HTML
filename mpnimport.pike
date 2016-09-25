@@ -52,6 +52,21 @@ string mpn_Welcome = #"<section data-bg=\"SolidDirt.png\">
 <h1>Welcome</h1>
 <footer>Finding solid ground in Christ</footer>
 </section>";
+string mpn_Opening = ""; //Opening Prayer
+string mpn_Prayer = "";
+string mpn_Announcements = "";
+string mpn_Offering = "";
+string mpn_Benediction = "";
+string mpn_Exit = "";
+
+string mpn_Hymn(string line) { } //Stub. This is the big one.
+
+string mpn_Bible(string line)
+{
+	sscanf(line, "Bible reading: %s (page %d)", string ref, int page);
+	if (!ref || !page) error("Unable to parse Scripture reading: %O\n", line);
+	return sprintf("<section><address>%s\npage %d</address></section>", ref, page);
+}
 
 int main()
 {
