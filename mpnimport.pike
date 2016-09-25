@@ -44,3 +44,13 @@ Exit []
 -- nothing
 
 */
+string current = Stdio.read_file("slides.html");
+
+int main()
+{
+	//Some of the 'git log' commands could become majorly messed up if certain
+	//types of edit have been made to slides.html since the last commit. So for
+	//simplicity, just do a quick check against HEAD and die early.
+	string HEAD = Process.run(({"git", "show", "HEAD:slides.html"}))->stdout;
+	if (current != HEAD) exit(1, "For safety, it is forbidden to run this with uncommitted changes to slides.html.\n");
+}
