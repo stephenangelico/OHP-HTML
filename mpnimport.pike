@@ -87,7 +87,7 @@ int main()
 	sscanf(utf8_to_string(mpn), "%d\0%s", int mpnindex, mpn); //Trim off the indexing headers
 
 	sscanf(current, "%s<section", string header);
-	string footer = (current / "</section>\n")[-1];
+	string footer = (current / "</section>")[-1];
 
 	//Assume that MPN consists of several paragraphs, and pick the first one with a hymn.
 	string service;
