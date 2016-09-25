@@ -7,6 +7,10 @@ To remotely switch between Chrome (running these overheads) and LibreOffice
     alias lo='env DISPLAY=:0.0 wmctrl -a 5.1'
     alias ch='env DISPLAY=:0.0 wmctrl -a Chrome'
 
+Correct detection of hymns for MPN import depends on their unique IDs. These
+should consist of a source identifier and a hymn number, eg "Rej 246" or "PP 3"
+or "MP 15", with the space included.
+
 The code in this repository is MIT-licensed. Hymn texts are copyright by their
 original owners, and their use is governed by the appropriate licenses eg CCLI;
 data usage is not covered by the below text.
