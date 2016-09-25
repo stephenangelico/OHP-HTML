@@ -68,6 +68,12 @@ string mpn_Bible(string line)
 	return sprintf("<section><address>%s\npage %d</address></section>", ref, page);
 }
 
+string mpn_Sermon(string line)
+{
+	sscanf(line, "Sermon: %s (", string title);
+	return "<section>" + title + "</section>";
+}
+
 int main()
 {
 	//Some of the 'git log' commands could become majorly messed up if certain
