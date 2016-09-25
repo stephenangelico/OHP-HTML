@@ -46,15 +46,12 @@ string current = Stdio.read_file("slides.html");
 array(string) parts = ({ });
 string sermonnotes = "";
 
-string mpn_Welcome(string line)
-{
-	return #"<section data-bg=\"SolidDirt.png\">
+string mpn_Welcome = #"<section data-bg=\"SolidDirt.png\">
 <h3><img src=\"Cross.png\"> Ashburton Presbyterian Church</h3>
 <p></p>
 <h1>Welcome</h1>
 <footer>Finding solid ground in Christ</footer>
 </section>";
-}
 
 int main()
 {
@@ -81,9 +78,9 @@ int main()
 	foreach (service/"\n", string line)
 	{
 		sscanf(line, "%[A-Za-z]", string word);
-		function handler = this["mpn_" + word];
+		string|function handler = this["mpn_" + word];
 		if (!handler) exit(1, "ERROR: Unknown line %O\n", line);
-		parts += ({handler(line)});
+		parts += ({stringp(handler) ? handler : handler(line)});
 	}
 
 	//If we get here, every line was recognized and accepted without error.
