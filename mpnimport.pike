@@ -59,7 +59,52 @@ string mpn_Offering = "";
 string mpn_Benediction = "";
 string mpn_Exit = "";
 
-string mpn_Hymn(string line) { } //Stub. This is the big one.
+string mpn_Hymn(string line)
+{
+	sscanf(line, "Hymn [%s] %s", string id, string titlehint);
+	//See if a hymn with that ID is in the current file. The git check
+	//below won't correctly handle that case, so let's special-case it
+	//for safety and simplicity.
+	if (has_value(current, "<h3>" + id + ": "))
+	{
+		sscanf(current, "<h3>"+id+": %s</h3>%s</cite>", string title, string body);
+		//TODO: Handle title/titlehint mismatches (not counting whitespace)
+		if (!title || !body) error("Unable to parse current hymn: %O\n", line);
+		return sprintf("<section>\n<h3>%s: %s</h3>%s</cite>\n</section>", id, title, body);
+	}
+	//Okay, it wasn't found. Locate the most recent commit that adds or removes
+	//the string "<h3>HymnID: ". It'll be a removal, since that ID doesn't occur
+	//in the current file.
+	string sha1 = String.trim_all_whites(Process.run(({
+		"git", "log", "-S", sprintf("<h3>%s: ", id), "-1", "--pretty=%H"
+	}))->stdout);
+	if (sha1 == "")
+	{
+		//No such hymn found. Create a stub.
+		return sprintf(#"<section>
+<h3>%s: %s</h3>
+
+</section>
+<section>
+
+<cite>© 1900-2000 Someone, Somewhere</cite>
+</section>", id, titlehint);
+	}
+	//Awesome! We have a SHA1 that *removed* this hymn ID.
+	//Most likely, it removed the whole hymn text, but we don't care. All we
+	//want is the text that was there *just before* the removal, which can be
+	//referenced as 142857^ and the file name. (I love git!)
+	string oldtext = Process.run(({"git", "show", sha1 + "^:slides.html"}))->stdout;
+	//TODO: Dedup
+	if (has_value(oldtext, "<h3>" + id + ": "))
+	{
+		sscanf(oldtext, "<h3>"+id+": %s</h3>%s</cite>", string title, string body);
+		//TODO: Handle title/titlehint mismatches (not counting whitespace)
+		if (!title || !body) error("Unable to parse hymn from %s: %O\n", sha1, line);
+		return sprintf("<section>\n<h3>%s: %s</h3>%s</cite>\n</section>", id, title, body);
+	}
+	error("Hymn not found in %s: %O\n", sha1, line);
+}
 
 string mpn_Bible(string line)
 {
