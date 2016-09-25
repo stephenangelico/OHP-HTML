@@ -13,8 +13,6 @@ Theory: Generate slides.html from MPN.
 6) Handle title conflicts somehow
 
 Interesting lines:
-Welcome / Call to worship () (BO)
--- emit opening slide
 Hymn [PP] By Faith
 -- see #4 and #5
 Hymn [R540] Jesus, I Am Trusting, Trusting
@@ -47,6 +45,16 @@ Exit []
 string current = Stdio.read_file("slides.html");
 array(string) parts = ({ });
 string sermonnotes = "";
+
+string mpn_Welcome(string line)
+{
+	return #"<section data-bg=\"SolidDirt.png\">
+<h3><img src=\"Cross.png\"> Ashburton Presbyterian Church</h3>
+<p></p>
+<h1>Welcome</h1>
+<footer>Finding solid ground in Christ</footer>
+</section>";
+}
 
 int main()
 {
