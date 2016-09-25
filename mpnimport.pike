@@ -116,7 +116,7 @@ string mpn_Bible(string line)
 string mpn_Sermon(string line)
 {
 	sscanf(line, "Sermon: %s (", string title);
-	return "<section>" + title + "</section>";
+	return "<section>\n" + title + "\n</section>";
 }
 
 int main()
