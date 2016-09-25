@@ -45,6 +45,7 @@ Exit []
 
 */
 string current = Stdio.read_file("slides.html");
+array(string) parts = ({ });
 
 int main()
 {
@@ -53,4 +54,18 @@ int main()
 	//simplicity, just do a quick check against HEAD and die early.
 	string HEAD = Process.run(({"git", "show", "HEAD:slides.html"}))->stdout;
 	if (current != HEAD) exit(1, "For safety, it is forbidden to run this with uncommitted changes to slides.html.\n");
+
+	string mpn = Protocols.HTTP.get_url_data("http://gideon.kepl.com.au:8000/mpn/sundaymusic.0");
+	if (!mpn) exit(1, "Unable to retrieve MPN - are you offline?\n");
+	sscanf(utf8_to_string(mpn), "%*d\0%s", mpn); //Trim off the indexing headers
+
+	sscanf(current, "%s<section", string header);
+	string footer = (current / "</section>\n")[-1];
+
+	//Assume that MPN consists of several paragraphs, and pick the first one with a hymn.
+	string service, sermonnotes;
+	foreach (mpn/"\n\n", string para)
+		if (has_value(para, "\nHymn [")) service = para;
+		else if (service && !sermonnotes) sermonnotes = para; //Not used for much
+	if (!service) exit(1, "Unable to find Order of Service paragraph in MPN.\n");
 }
