@@ -62,6 +62,29 @@ string mpn_Exit = "";
 string mpn_Hymn(string line)
 {
 	sscanf(line, "Hymn [%s] %s", string id, string titlehint);
+	if (id == "PP")
+	{
+		//Barry hack. Find any previous usage of "PP%d:" with a matching title.
+		foreach (current/"\n", string line) if (sscanf(line, "<h3>PP%d: %s", int pp, string title))
+			if (lower_case(title) == lower_case(titlehint)) id = "PP" + pp;
+		if (id == "PP") //Didn't find one in the current file. Search history.
+		{
+			//We use git's regex handling, here, so hopefully there won't be any
+			//square brackets or anything in the title. (Dots aren't a problem -
+			//a dot matches a dot just fine, and it's unlikely to have a false pos.)
+			string sha1 = String.trim_all_whites(Process.run(({
+				"git", "log", "-S", "<h3>PP[0-9]*: " + titlehint, "--pickaxe-regex", "-i", "-1", "--pretty=%H"
+			}))->stdout);
+			if (sha1)
+			{
+				string text = utf8_to_string(Process.run(({"git", "show", sha1+"^:slides.html"}))->stdout);
+				foreach (current/"\n", string line) if (sscanf(line, "<h3>PP%d: %s", int pp, string title))
+					if (lower_case(title) == lower_case(titlehint)) id = "PP" + pp;
+			}
+			if (id == "PP") id = "PP" + hash_value(titlehint); //Big long number :)
+			//For simplicity, just fall through.
+		}
+	}
 	//See if a hymn with that ID is in the current file. The git check
 	//below won't correctly handle that case, so let's special-case it
 	//for safety and simplicity.
