@@ -87,7 +87,7 @@ string mpn_Hymn(string line)
 </section>
 <section>
 
-<cite>© 1900-2000 Someone, Somewhere</cite>
+<cite>\xA9 1900-2000 Someone, Somewhere</cite>
 </section>", id, titlehint);
 	}
 	//Awesome! We have a SHA1 that *removed* this hymn ID.
