@@ -9,7 +9,7 @@ Theory: Generate slides.html from MPN.
    If none, create stub (including empty citation and two verses)
 4) Handle PP numberless:
    git show `git log -S '<h3>PP[0-9]* Title' --pickaxe-regex -1 --pretty=%H`^:slides.html
-5) Update MPN if any PPs got their numbers added
+5) Update MPN if any PPs got their numbers added (require auth? or use pseudo-auth of 192.168?)
 6) Handle title conflicts somehow
 
 Interesting lines:
