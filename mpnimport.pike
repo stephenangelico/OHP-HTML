@@ -42,7 +42,7 @@ Exit []
 -- nothing
 
 */
-string current = Stdio.read_file("slides.html");
+string current = utf8_to_string(Stdio.read_file("slides.html"));
 array(string) parts = ({ });
 string sermonnotes = "";
 
@@ -67,7 +67,7 @@ string mpn_Hymn(string line)
 	//for safety and simplicity.
 	if (has_value(current, "<h3>" + id + ": "))
 	{
-		sscanf(current, "<h3>"+id+": %s</h3>%s</cite>", string title, string body);
+		sscanf(current, "%*s<h3>"+id+": %s</h3>%s</cite>", string title, string body);
 		//TODO: Handle title/titlehint mismatches (not counting whitespace)
 		if (!title || !body) error("Unable to parse current hymn: %O\n", line);
 		return sprintf("<section>\n<h3>%s: %s</h3>%s</cite>\n</section>", id, title, body);
@@ -94,11 +94,11 @@ string mpn_Hymn(string line)
 	//Most likely, it removed the whole hymn text, but we don't care. All we
 	//want is the text that was there *just before* the removal, which can be
 	//referenced as 142857^ and the file name. (I love git!)
-	string oldtext = Process.run(({"git", "show", sha1 + "^:slides.html"}))->stdout;
+	string oldtext = utf8_to_string(Process.run(({"git", "show", sha1 + "^:slides.html"}))->stdout);
 	//TODO: Dedup
 	if (has_value(oldtext, "<h3>" + id + ": "))
 	{
-		sscanf(oldtext, "<h3>"+id+": %s</h3>%s</cite>", string title, string body);
+		sscanf(oldtext, "%*s<h3>"+id+": %s</h3>%s</cite>", string title, string body);
 		//TODO: Handle title/titlehint mismatches (not counting whitespace)
 		if (!title || !body) error("Unable to parse hymn from %s: %O\n", sha1, line);
 		return sprintf("<section>\n<h3>%s: %s</h3>%s</cite>\n</section>", id, title, body);
@@ -124,7 +124,7 @@ int main()
 	//Some of the 'git log' commands could become majorly messed up if certain
 	//types of edit have been made to slides.html since the last commit. So for
 	//simplicity, just do a quick check against HEAD and die early.
-	string HEAD = Process.run(({"git", "show", "HEAD:slides.html"}))->stdout;
+	string HEAD = utf8_to_string(Process.run(({"git", "show", "HEAD:slides.html"}))->stdout);
 	if (current != HEAD) exit(1, "For safety, it is forbidden to run this with uncommitted changes to slides.html.\n");
 
 	string mpn = Protocols.HTTP.get_url_data("http://gideon.kepl.com.au:8000/mpn/sundaymusic.0");
