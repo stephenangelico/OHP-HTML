@@ -176,5 +176,5 @@ int main()
 	//If we get here, every line was recognized and accepted without error.
 	Stdio.write_file("slides.html", string_to_utf8(header + (parts-({""}))*"\n" + footer));
 	//No commit during testing.
-	//Process.create_process(({"git", "commit", "slides.html", sprintf("-mUpdate slides from MPN #%d", mpnindex)}))->wait();
+	Process.create_process(({"git", "commit", "slides.html", sprintf("-mUpdate slides from MPN #%d", mpnindex)}))->wait();
 }
