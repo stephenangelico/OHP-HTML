@@ -46,6 +46,7 @@ Exit []
 */
 string current = Stdio.read_file("slides.html");
 array(string) parts = ({ });
+string sermonnotes = "";
 
 int main()
 {
@@ -57,15 +58,28 @@ int main()
 
 	string mpn = Protocols.HTTP.get_url_data("http://gideon.kepl.com.au:8000/mpn/sundaymusic.0");
 	if (!mpn) exit(1, "Unable to retrieve MPN - are you offline?\n");
-	sscanf(utf8_to_string(mpn), "%*d\0%s", mpn); //Trim off the indexing headers
+	sscanf(utf8_to_string(mpn), "%d\0%s", int mpnindex, mpn); //Trim off the indexing headers
 
 	sscanf(current, "%s<section", string header);
 	string footer = (current / "</section>\n")[-1];
 
 	//Assume that MPN consists of several paragraphs, and pick the first one with a hymn.
-	string service, sermonnotes;
+	string service;
 	foreach (mpn/"\n\n", string para)
 		if (has_value(para, "\nHymn [")) service = para;
 		else if (service && !sermonnotes) sermonnotes = para; //Not used for much
 	if (!service) exit(1, "Unable to find Order of Service paragraph in MPN.\n");
+
+	foreach (service/"\n", string line)
+	{
+		sscanf(line, "%[A-Za-z]", string word);
+		function handler = this["mpn_" + word];
+		if (!handler) exit(1, "ERROR: Unknown line %O\n", line);
+		parts += ({handler(line)});
+	}
+
+	//If we get here, every line was recognized and accepted without error.
+	Stdio.write_file("slides.html", header + parts*"\n" + footer);
+	//No commit during testing.
+	//Process.create_process(({"git", "commit", "slides.html", sprintf("-mUpdate slides from MPN #%d", mpnindex)}))->wait();
 }
