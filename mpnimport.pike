@@ -140,7 +140,7 @@ string mpn_Bible(string line)
 string mpn_Sermon(string line)
 {
 	sscanf(line, "Sermon: %s (", string title);
-	return "<section>\n" + title + "\n</section>";
+	return "<section>\n" + title + "\n" + sermonnotes + "\n</section>";
 }
 
 int main()
@@ -162,7 +162,7 @@ int main()
 	string service;
 	foreach (mpn/"\n\n", string para)
 		if (has_value(para, "\nHymn [")) service = para;
-		else if (service && !sermonnotes) sermonnotes = para; //Not used for much
+		else if (service && sermonnotes=="") sermonnotes = para; //Not used for much
 	if (!service) exit(1, "Unable to find Order of Service paragraph in MPN.\n");
 
 	foreach (service/"\n", string line)
