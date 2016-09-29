@@ -1,5 +1,4 @@
-/*
-Theory: Generate slides.html from MPN.
+/* Generate slides.html from MPN.
 
 1) Read current status of MPN
 2) Locate the "interesting bit"
