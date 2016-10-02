@@ -16,8 +16,25 @@ function keypress(event)
 		case "Right":
 		case "PageDown":
 			sib = "nextSibling";
+			//See if there are any <aside> blocks still hidden. If so,
+			//unhide one and that's it.
+			var asides = slide.getElementsByTagName("aside");
+			for (var i=0; i<asides.length; ++i) if (!asides[i].classList.contains("current"))
+			{
+				asides[i].classList.add("current");
+				return;
+			}
+			break;
 		case "Left":
 		case "PageUp":
+			//See if there are any visible <aside> blocks. If so,
+			//hide one and that's it.
+			var asides = slide.getElementsByTagName("aside");
+			for (var i=asides.length-1; i>=0; --i) if (asides[i].classList.contains("current"))
+			{
+				asides[i].classList.remove("current");
+				return;
+			}
 			break;
 		case "U+00BE": //Screen-blank
 			slide.classList.toggle("current");
@@ -50,8 +67,20 @@ function keypress(event)
 
 function findfirst()
 {
-	curslide = document.getElementsByTagName("section")[0];
+	var sections = document.getElementsByTagName("section");
+	curslide = sections[0];
 	curslide.classList.add("current");
+	for (var i=0; i < sections.length; ++i)
+	{
+		var sec = sections[i];
+		if (sec.classList.contains("showcase"))
+			sec.innerHTML = '<div style="background-image: url(' + sec.innerHTML + ')"></div>';
+		if (sec.dataset.bg)
+		{
+			sec.style.backgroundImage = 'url(' + sec.dataset.bg + ')';
+			sec.classList.add("bgimg"); //Apply other styles there, for simplicity
+		}
+	}
 }
 </script>
 </head>

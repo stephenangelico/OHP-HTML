@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Superscriptify</title>
+<script>
+function suprafy(inp)
+{
+	var orig = inp.value;
+	var out = Array.prototype.map.call(orig, function(ltr) {
+		return '⁰¹²³⁴⁵⁶⁷⁸⁹'.split('')[ltr] || ltr;
+	}).join('');
+	if (out != orig) inp.value = out;
+}
+</script>
+</head>
+<body>
+<p>Enter digits here: <input id="content" size=40 oninput="suprafy(this)"></p>
+</body>
+</html>

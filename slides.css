@@ -27,6 +27,9 @@ section {
 	
 }
 
+aside {
+	display: none;
+}
  
 .current {
 	display: block;
@@ -38,6 +41,33 @@ section {
 
 .refrain {
 	font-style: italic;
+}
+
+.bgimg {
+	background-size: cover;
+	background-position: bottom;
+	color: white;
+}
+
+footer {
+	position: absolute;
+	bottom: 5%;
+	width: 100%;
+	text-align: center;
+}
+
+/* Requires some JS magic, see slides.html */
+.showcase {
+	background-color: black;
+	padding: 10px;
+}
+.showcase div {
+	margin: auto;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 100%;
+	height: 100%;
 }
 
 h1,h2,h3 {
@@ -64,4 +94,8 @@ address {
 	margin: -1.4em 0 0 0;
 	text-align: center;
 	line-height: 150%;
+}
+
+.flow {
+	float: left;
 }
