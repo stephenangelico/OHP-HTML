@@ -46,7 +46,6 @@ TODO: Scripture references (<address> blocks) to get actual content (<aside>???)
 -- and hey, we could offer any number of non-English versions too.....
 -- could sync up with https://github.com/Rosuav/niv84 but then we do the work ourselves
 TODO: Command-line usage to make cut-down slides for pre-service singing etc
-TODO: "List available tags" mode - would show tags and titles
 
 */
 string current = utf8_to_string(Stdio.read_file("slides.html"));
@@ -151,8 +150,35 @@ string mpn_Sermon(string line)
 	return "<section>\n" + title + "\n" + sermonnotes + "\n</section>";
 }
 
-int main()
+int main(int argc, array(string) argv)
 {
+	if (argc > 1 && lower_case(argv[1]) == "list")
+	{
+		mapping(string:mapping(int:string)) titles = ([]);
+		string text = current;
+		while (sscanf(text, "%*s<h3>%s</h3>%s", string hdr, text) == 3)
+			if (sscanf(hdr, "%[A-Za-z] %d: %s", string book, int num, string title) == 3)
+			{
+				if (!titles[book]) titles[book] = ([]);
+				if (!titles[book][num]) titles[book][num] = title;
+			}
+		foreach (String.trim_all_whites(Process.run(({
+			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H"
+		}))->stdout)/"\n", string sha1)
+		{
+			string text = utf8_to_string(Process.run(({"git", "show", sha1 + "^:slides.html"}))->stdout);
+			while (sscanf(text, "%*s<h3>%s</h3>%s", string hdr, text) == 3)
+				if (sscanf(hdr, "%[A-Za-z] %d: %s", string book, int num, string title) == 3)
+				{
+					if (!titles[book]) titles[book] = ([]);
+					if (!titles[book][num]) titles[book][num] = title;
+				}
+		}
+		foreach (titles; string book; mapping hymns)
+			foreach (sort(indices(hymns)), int num)
+				write("%s %d: %s\n", book, num, hymns[num]);
+		return 0;
+	}
 	//Some of the 'git log' commands could become majorly messed up if certain
 	//types of edit have been made to slides.html since the last commit. So for
 	//simplicity, just do a quick check against HEAD and die early.
