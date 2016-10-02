@@ -40,6 +40,10 @@ Benediction (BO)
 Exit []
 -- nothing
 
+TODO: Scripture references (<address> blocks) to get actual content (<aside>???)
+TODO: Command-line usage to make cut-down slides
+TODO: "List available tags" mode - would show tags and titles
+
 */
 string current = utf8_to_string(Stdio.read_file("slides.html"));
 array(string) parts = ({ });
