@@ -9,11 +9,11 @@ best results.
 1) Read current status of MPN
 2) Locate the "interesting bit"
 3) Pull hymns from the git history
-   git show `git log -S '<h3>R246: ' -1 --pretty=%H`^:slides.html
-   sscanf(data, "%*s<h3>R246: %s</cite>", string hymn);
+   git show `git log -S '<h3>Rej 246: ' -1 --pretty=%H`^:slides.html
+   sscanf(data, "%*s<h3>Rej 246: %s</cite>", string hymn);
    If none, create stub (including empty citation and two verses)
 4) Handle PP numberless:
-   git show `git log -S '<h3>PP[0-9]*: Title' --pickaxe-regex -1 --pretty=%H`^:slides.html
+   git show `git log -S '<h3>PP [0-9]*: Title' --pickaxe-regex -1 --pretty=%H`^:slides.html
 5) Update MPN if any PPs got their numbers added (require auth? or use pseudo-auth of 192.168?)
 6) Handle title conflicts somehow
 
