@@ -1,4 +1,10 @@
-/* Generate slides.html from MPN.
+/* Generate slides.html with hymn texts.
+
+By default, will read from MPN - see below. Otherwise, provide a series of hymn refs
+on the command line:
+$ pike mpnimport RCM 160 RCM 212 PP 11
+To see which hymn refs are available, "pike mpnimport list". Follow that format for
+best results.
 
 1) Read current status of MPN
 2) Locate the "interesting bit"
