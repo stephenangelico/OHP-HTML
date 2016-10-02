@@ -41,7 +41,11 @@ Exit []
 -- nothing
 
 TODO: Scripture references (<address> blocks) to get actual content (<aside>???)
-TODO: Command-line usage to make cut-down slides
+-- not too hard if we're willing to change version, else VERY hard due to copyright
+-- https://getbible.net/api offers several English versions but not NIV
+-- and hey, we could offer any number of non-English versions too.....
+-- could sync up with https://github.com/Rosuav/niv84 but then we do the work ourselves
+TODO: Command-line usage to make cut-down slides for pre-service singing etc
 TODO: "List available tags" mode - would show tags and titles
 
 */
