@@ -45,7 +45,6 @@ TODO: Scripture references (<address> blocks) to get actual content (<aside>???)
 -- https://getbible.net/api offers several English versions but not NIV
 -- and hey, we could offer any number of non-English versions too.....
 -- could sync up with https://github.com/Rosuav/niv84 but then we do the work ourselves
-TODO: Command-line usage to make cut-down slides for pre-service singing etc
 
 */
 string current = utf8_to_string(Stdio.read_file("slides.html"));
@@ -186,6 +185,16 @@ int main(int argc, array(string) argv)
 
 	sscanf(current, "%s<section", string header);
 	string footer = (current / "</section>")[-1];
+
+	if (argc > 1 && (argc&1))
+	{
+		array(string) parts = ({ });
+		foreach (argv[1..]/2, [string book, string num])
+			parts += ({mpn_Hymn(sprintf("Hymn [%s %s] ...", book, num))});
+		Stdio.write_file("slides.html", string_to_utf8(header + (parts-({""}))*"\n" + footer));
+		Process.create_process(({"git", "commit", "slides.html", "-mBuild slides for specific hymns"}))->wait();
+		return 0;
+	}
 
 	string mpn = Protocols.HTTP.get_url_data("http://gideon.kepl.com.au:8000/mpn/sundaymusic.0");
 	if (!mpn) exit(1, "Unable to retrieve MPN - are you offline?\n");
