@@ -85,7 +85,7 @@ string mpn_Hymn(string line)
 			//square brackets or anything in the title. (Dots aren't a problem -
 			//a dot matches a dot just fine, and it's unlikely to have a false pos.)
 			string sha1 = String.trim_all_whites(Process.run(({
-				"git", "log", "-S", "<h3>PP [0-9]*: " + titlehint, "--pickaxe-regex", "-i", "-1", "--pretty=%H"
+				"git", "log", "-S", "<h3>PP [0-9]*: " + titlehint, "--pickaxe-regex", "-i", "-1", "--pretty=%H", "slides.html"
 			}))->stdout);
 			if (sha1)
 			{
@@ -111,7 +111,7 @@ string mpn_Hymn(string line)
 	//the string "<h3>HymnID: ". It'll be a removal, since that ID doesn't occur
 	//in the current file.
 	string sha1 = String.trim_all_whites(Process.run(({
-		"git", "log", "-S", sprintf("<h3>%s: ", id), "-1", "--pretty=%H"
+		"git", "log", "-S", sprintf("<h3>%s: ", id), "-1", "--pretty=%H", "slides.html"
 	}))->stdout);
 	if (sha1 == "")
 	{
@@ -167,7 +167,7 @@ int main(int argc, array(string) argv)
 				if (!titles[book][num]) titles[book][num] = title;
 			}
 		foreach (String.trim_all_whites(Process.run(({
-			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H"
+			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H", "slides.html"
 		}))->stdout)/"\n", string sha1)
 		{
 			string text = utf8_to_string(Process.run(({"git", "show", sha1 + "^:slides.html"}))->stdout);
