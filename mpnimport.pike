@@ -67,6 +67,7 @@ string mpn_Prayer = "";
 string mpn_Announcements = "";
 string mpn_Offering = "";
 string mpn_The = ""; //The Lord's Supper. Probably should make this a function that verifies.
+string mpn_Mission = "";
 string mpn_Benediction = "";
 string mpn_Exit = "";
 
