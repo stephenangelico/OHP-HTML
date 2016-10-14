@@ -10,10 +10,12 @@ function keypress(event)
 {
 	var slide = curslide, lastslide = curslide;
 	var sib = "previousSibling";
-	switch (event.keyIdentifier) /* NOT OFFICIALLY SUPPORTED */
+	switch (event.keyIdentifier || event.key) /* keyIdentifier is NOT OFFICIALLY SUPPORTED */
 	{
 		case "U+0020":
+		case "Space":
 		case "Right":
+		case "ArrowRight":
 		case "PageDown":
 			sib = "nextSibling";
 			//See if there are any <aside> blocks still hidden. If so,
@@ -25,6 +27,7 @@ function keypress(event)
 				return;
 			}
 			break;
+		case "ArrowLeft":
 		case "Left":
 		case "PageUp":
 			//See if there are any visible <aside> blocks. If so,
@@ -37,6 +40,7 @@ function keypress(event)
 			}
 			break;
 		case "U+00BE": //Screen-blank
+		case "Period":
 			slide.classList.toggle("current");
 			//Use the Blank button to stop videos
 			var videos = slide.getElementsByTagName("video");
