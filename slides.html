@@ -13,7 +13,7 @@ function keypress(event)
 	switch (event.keyIdentifier || event.key) /* keyIdentifier is NOT OFFICIALLY SUPPORTED */
 	{
 		case "U+0020":
-		case "Space":
+		case " ":
 		case "Right":
 		case "ArrowRight":
 		case "PageDown":
@@ -40,7 +40,7 @@ function keypress(event)
 			}
 			break;
 		case "U+00BE": //Screen-blank
-		case "Period":
+		case ".":
 			slide.classList.toggle("current");
 			//Use the Blank button to stop videos
 			var videos = slide.getElementsByTagName("video");
