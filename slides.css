@@ -49,6 +49,10 @@ aside {
 	color: white;
 }
 
+.smaller {
+	font-size: 180%;
+}
+
 footer {
 	position: absolute;
 	bottom: 5%;
