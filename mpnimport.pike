@@ -160,7 +160,9 @@ int main(int argc, array(string) argv)
 	if (argc > 1 && lower_case(argv[1]) == "list")
 	{
 		mapping(string:mapping(int:string)) titles = ([]);
+		//The current state is represented by the most recent commit that changed slides.html.
 		string hashes = Process.run(({"git", "log", "-1", "--pretty=%H %ai %ar", "slides.html"}))->stdout;
+		//Previous states are those which add/remove appropriately-formatted heading tags.
 		hashes += Process.run(({
 			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H %ai %ar", "slides.html"
 		}))->stdout;
