@@ -168,13 +168,14 @@ int main(int argc, array(string) argv)
 		}))->stdout;
 		foreach (String.trim_all_whites(hashes)/"\n", string sha1)
 		{
-			sscanf(sha1, "%s %s %*s %*s %s", sha1, string date, string relative);
+			//TODO: Have different options governing the time display.
+			sscanf(sha1, "%s %s %s %s %s", sha1, string date, string time, string tz, string relative);
 			string text = utf8_to_string(Process.run(({"git", "show", sha1 + "^:slides.html"}))->stdout);
 			while (sscanf(text, "%*s<h3>%s</h3>%s", string hdr, text) == 3)
 				if (sscanf(hdr, "%[A-Za-z] %d: %s", string book, int num, string title) == 3)
 				{
 					if (!titles[book]) titles[book] = ([]);
-					if (!titles[book][num]) titles[book][num] = sprintf("%s [%s - %s]", title, date, relative);
+					if (!titles[book][num]) titles[book][num] = sprintf("%s [%s]", title, relative);
 				}
 		}
 		foreach (titles; string book; mapping hymns)
