@@ -161,22 +161,25 @@ int main(int argc, array(string) argv)
 	{
 		mapping(string:mapping(int:string)) titles = ([]);
 		string text = current;
+		sscanf(Process.run(({"git", "log", "-1", "--pretty=%H %ai %ar", "slides.html"}))->stdout,
+			"%s %s %*s %*s %[^\n]", string sha1, string date, string relative);
 		while (sscanf(text, "%*s<h3>%s</h3>%s", string hdr, text) == 3)
 			if (sscanf(hdr, "%[A-Za-z] %d: %s", string book, int num, string title) == 3)
 			{
 				if (!titles[book]) titles[book] = ([]);
-				if (!titles[book][num]) titles[book][num] = title;
+				if (!titles[book][num]) titles[book][num] = sprintf("%s [%s - %s]", title, date, relative);
 			}
 		foreach (String.trim_all_whites(Process.run(({
-			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H", "slides.html"
+			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H %ai %ar", "slides.html"
 		}))->stdout)/"\n", string sha1)
 		{
+			sscanf(sha1, "%s %s %*s %*s %s", sha1, string date, string relative);
 			string text = utf8_to_string(Process.run(({"git", "show", sha1 + "^:slides.html"}))->stdout);
 			while (sscanf(text, "%*s<h3>%s</h3>%s", string hdr, text) == 3)
 				if (sscanf(hdr, "%[A-Za-z] %d: %s", string book, int num, string title) == 3)
 				{
 					if (!titles[book]) titles[book] = ([]);
-					if (!titles[book][num]) titles[book][num] = title;
+					if (!titles[book][num]) titles[book][num] = sprintf("%s [%s - %s]", title, date, relative);
 				}
 		}
 		foreach (titles; string book; mapping hymns)
