@@ -170,6 +170,9 @@ int main(int argc, array(string) argv)
 		foreach (String.trim_all_whites(hashes)/"\n", string sha1)
 		{
 			//TODO: Have different options governing the time display.
+			//TODO: The timestamps currently are of the commits that _remove_ information.
+			//It'd be better to show the timestamp of one commit previous - the one that
+			//still had it - or even of the commit that actually added it.
 			sscanf(sha1, "%s %s %s %s %s", sha1, string date, string time, string tz, string relative);
 			string text = utf8_to_string(Process.run(({"git", "show", sha1 + "^:slides.html"}))->stdout);
 			while (sscanf(text, "%*s<h3>%s</h3>%s", string hdr, text) == 3)
