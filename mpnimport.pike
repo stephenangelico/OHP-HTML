@@ -159,13 +159,14 @@ int main(int argc, array(string) argv)
 {
 	if (argc > 1 && lower_case(argv[1]) == "list")
 	{
-		mapping(string:mapping(int:string)) titles = ([]);
+		mapping(string:mapping(int:array(string))) titles = ([]);
 		//The current state is represented by the most recent commit that changed slides.html.
 		string hashes = Process.run(({"git", "log", "-1", "--pretty=%H %ai %ar", "slides.html"}))->stdout;
 		//Previous states are those which add/remove appropriately-formatted heading tags.
 		hashes += Process.run(({
 			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H %ai %ar", "slides.html"
 		}))->stdout;
+		int booklen, titlelen, datelen;
 		foreach (String.trim_all_whites(hashes)/"\n", string sha1)
 		{
 			//TODO: Have different options governing the time display.
@@ -174,13 +175,26 @@ int main(int argc, array(string) argv)
 			while (sscanf(text, "%*s<h3>%s</h3>%s", string hdr, text) == 3)
 				if (sscanf(hdr, "%[A-Za-z] %d: %s", string book, int num, string title) == 3)
 				{
+					booklen = max(booklen, sizeof(book));
+					titlelen = max(titlelen, sizeof(title));
+					datelen = max(datelen, sizeof(relative));
 					if (!titles[book]) titles[book] = ([]);
-					if (!titles[book][num]) titles[book][num] = sprintf("%s [%s]", title, relative);
+					if (!titles[book][num]) titles[book][num] = ({title, relative});
 				}
 		}
+		int need = booklen + titlelen + datelen + 7; //Assumes three digits for the hymn number. TODO: Don't assume.
+		catch {if (Stdio.stdin->tcgetattr()->columns >= need)
+		{
+			//Use a tabular layout, since we have the room. (If we can't figure out whether we have
+			//room or not, assume we don't. We could assume 80 columns, maybe, but just don't.)
+			foreach (titles; string book; mapping hymns)
+				foreach (sort(indices(hymns)), int num)
+					write("%*s %3d %-*s %s\n", booklen, book, num, titlelen, @hymns[num]);
+			return 0;
+		}};
 		foreach (titles; string book; mapping hymns)
 			foreach (sort(indices(hymns)), int num)
-				write("%s %d: %s\n", book, num, hymns[num]);
+				write("%s %d: %s [%s]\n", book, num, @hymns[num]);
 		return 0;
 	}
 	//Some of the 'git log' commands could become majorly messed up if certain
