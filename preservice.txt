@@ -1,0 +1,75 @@
+Book priority: Rej, MP, PP, RCM, other
+If the tune in a lower-priority book is better, use the identifier from the higher prio, and add the other in parens.
+
+Pre-service singing ideas - remove from this list once they're in the main history
+
+Rej 459 Banner
+Rej 502 Story
+MP 15 Waits
+MP 37 Deer
+MP 445 Light
+MP 126 Facing a Task Unfinished [w/ or w/o refrain]
+PP 3 By Faith
+Rej 577 Promises
+Rej 128 Thousand Tongues
+MP 969 Forever Grateful (RCM 512)
+Rej 440 Deep
+Rej 522 Hydrofoil
+Rej 416 Friend
+Rej 294 Aurelia
+Rej 295 Austria
+Rej 210 Beneath
+Rej 204 Rugged
+Rej 151 Name
+Rej 138 Vuelie
+Rej 134 Praise
+Rej 70 Praise
+Rej 46 Praise
+Rej 32 Dambusters
+Rej 9 Hanover
+Rej 8 Subterranean
+Rej 2 Last Us
+Rej 1 Rejoice
+Rej 601 Safe
+Rej 590 Zion
+Rej 582 Solid Rock
+Rej 401 Anchor
+Rej 400 Sagina
+Rej 421 Repton421
+Rej 460 Stand Up
+Rej 503 Waited
+Rej 603 Ewing/Let Her Go
+Rej 296 Glorious
+Rej 254 Helmsley
+Rej 91 Moscow
+Rej 88 Now Thank
+Rej 63 '63'
+Rej 56 Trump Vol
+MP 52 Because He Lives
+Rej 258 Georgia
+MP 523 Valleys
+MP 544 Illumine
+MP 181 Freely
+Rej 368 Working Out
+Rej 456 Lord's Side
+Rej 461 Soldiers
+Rej 462 Faith
+Rej 61 Church Triumphant
+Rej 370 Jesus Saves (to MP 730)
+Rej 371 Message
+Rej 587 Wonderful Change
+Rej 169 Who Is He
+RCM 294 And I beheld the voice of many angels
+MP 790 Hiding Place
+RCM 301 Canopy
+RCM 406 Overcomes
+RCM 434 Clean Heart
+RCM 428 Fear Not
+RCM 426 Search
+RCM 250 I will arise
+RCM 76 Mountain
+MP 163 Rising (RCM 116)
+Rej 449 Redeemed (RCM 183)
+Rej 413 I will sing (twice)
+RCM 472 Crowned
+RCM 496 Door
