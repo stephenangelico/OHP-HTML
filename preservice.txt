@@ -5,10 +5,8 @@ Pre-service singing ideas - remove from this list once they're in the main histo
 
 Rej 459 Banner
 Rej 502 Story
-MP 15 Waits
 MP 37 Deer
 MP 445 Light
-MP 126 Facing a Task Unfinished [w/ or w/o refrain]
 PP 3 By Faith
 Rej 577 Promises
 Rej 128 Thousand Tongues
@@ -45,7 +43,6 @@ Rej 91 Moscow
 Rej 88 Now Thank
 Rej 63 '63'
 Rej 56 Trump Vol
-MP 52 Because He Lives
 Rej 258 Georgia
 MP 523 Valleys
 MP 544 Illumine
