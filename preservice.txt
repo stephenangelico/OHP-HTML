@@ -70,3 +70,4 @@ Rej 449 Redeemed (RCM 183)
 Rej 413 I will sing (twice)
 RCM 472 Crowned
 RCM 496 Door
+Rej 450 Trusting
