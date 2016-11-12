@@ -32,7 +32,6 @@ Rej 370 Jesus Saves (to MP 730)
 Rej 371 Message
 Rej 400 Sagina
 Rej 401 Anchor
-Rej 413 I will sing (twice)
 Rej 416 Friend
 Rej 421 Repton421
 Rej 440 Deep
@@ -63,7 +62,6 @@ MP 969 Forever Grateful (RCM 512)
 PP 3 By Faith
 RCM 76 Mountain
 RCM 250 I will arise
-RCM 294 And I beheld the voice of many angels
 RCM 301 Canopy
 RCM 406 Overcomes
 RCM 426 Search
