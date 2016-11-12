@@ -64,6 +64,7 @@ RCM 76 Mountain
 RCM 250 I will arise
 RCM 301 Canopy
 RCM 406 Overcomes
+RCM 415 Sing to the Lord
 RCM 426 Search
 RCM 428 Fear Not
 RCM 434 Clean Heart
