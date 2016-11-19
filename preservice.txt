@@ -18,7 +18,9 @@ Rej 91 Moscow
 Rej 128 Thousand Tongues
 Rej 134 Praise
 Rej 138 Vuelie
+Rej 144 Reign
 Rej 151 Name
+Rej 158 Story
 Rej 169 Who Is He
 Rej 204 Rugged
 Rej 210 Beneath
@@ -42,6 +44,7 @@ Rej 459 Banner
 Rej 460 Stand Up
 Rej 461 Soldiers
 Rej 462 Faith
+Rej 480 Rhondda
 Rej 502 Story
 Rej 503 Waited
 Rej 522 Hydrofoil
