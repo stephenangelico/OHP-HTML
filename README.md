@@ -11,6 +11,9 @@ Correct detection of hymns for MPN import depends on their unique IDs. These
 should consist of a source identifier and a hymn number, eg "Rej 246" or "PP 3"
 or "MP 15", with the space included.
 
+TODO: Socket.io to synchronize master(s) with slaves(s). Might also make reload
+not reset to start of slides.
+
 The code in this repository is MIT-licensed. Hymn texts are copyright by their
 original owners, and their use is governed by the appropriate licenses eg CCLI;
 data usage is not covered by the below text.
