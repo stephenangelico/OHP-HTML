@@ -1,49 +1,32 @@
 var curslide;
-function keypress(event)
+function next_slide()
 {
-	var slide = curslide, lastslide = curslide;
-	var sib = "previousSibling";
-	switch (event.keyIdentifier || event.key) /* keyIdentifier is NOT OFFICIALLY SUPPORTED */
+	//See if there are any <aside> blocks still hidden. If so,
+	//unhide one and that's it.
+	var asides = slide.getElementsByTagName("aside");
+	for (var i=0; i<asides.length; ++i) if (!asides[i].classList.contains("current"))
 	{
-		case "U+0020":
-		case " ":
-		case "Right":
-		case "ArrowRight":
-		case "PageDown":
-			sib = "nextSibling";
-			//See if there are any <aside> blocks still hidden. If so,
-			//unhide one and that's it.
-			var asides = slide.getElementsByTagName("aside");
-			for (var i=0; i<asides.length; ++i) if (!asides[i].classList.contains("current"))
-			{
-				asides[i].classList.add("current");
-				return;
-			}
-			break;
-		case "ArrowLeft":
-		case "Left":
-		case "PageUp":
-			//See if there are any visible <aside> blocks. If so,
-			//hide one and that's it.
-			var asides = slide.getElementsByTagName("aside");
-			for (var i=asides.length-1; i>=0; --i) if (asides[i].classList.contains("current"))
-			{
-				asides[i].classList.remove("current");
-				return;
-			}
-			break;
-		case "U+00BE": //Screen-blank
-		case ".":
-			slide.classList.toggle("current");
-			//Use the Blank button to stop videos
-			var videos = slide.getElementsByTagName("video");
-			for (var i=0; i<videos.length; ++i)
-				videos[i].pause();
-			return;
-		default:
-			console.log(event);
-			return;
+		asides[i].classList.add("current");
+		return;
 	}
+	change_slide("nextSibling");
+}
+
+function prev_slide()
+{
+	//See if there are any visible <aside> blocks. If so,
+	//hide one and that's it.
+	var asides = slide.getElementsByTagName("aside");
+	for (var i=asides.length-1; i>=0; --i) if (asides[i].classList.contains("current"))
+	{
+		asides[i].classList.remove("current");
+		return;
+	}
+	change_slide("previousSibling");
+}
+
+function change_slide()
+{
 	do
 	{
 		slide = slide[sib];
@@ -60,6 +43,38 @@ function keypress(event)
 	var videos = lastslide.getElementsByTagName("video");
 	for (var i=0; i<videos.length; ++i)
 		videos[i].pause();
+}
+
+function keypress(event)
+{
+	var slide = curslide, lastslide = curslide;
+	var sib = "previousSibling";
+	switch (event.keyIdentifier || event.key) /* keyIdentifier is NOT OFFICIALLY SUPPORTED */
+	{
+		case "U+0020":
+		case " ":
+		case "Right":
+		case "ArrowRight":
+		case "PageDown":
+			next_slide();
+			break;
+		case "ArrowLeft":
+		case "Left":
+		case "PageUp":
+			prev_slide();
+			break;
+		case "U+00BE": //Screen-blank
+		case ".":
+			slide.classList.toggle("current");
+			//Use the Blank button to stop videos
+			var videos = slide.getElementsByTagName("video");
+			for (var i=0; i<videos.length; ++i)
+				videos[i].pause();
+			return;
+		default:
+			console.log(event);
+			return;
+	}
 }
 
 function findfirst()
