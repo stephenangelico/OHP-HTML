@@ -3,7 +3,7 @@ function next_slide()
 {
 	//See if there are any <aside> blocks still hidden. If so,
 	//unhide one and that's it.
-	var asides = slide.getElementsByTagName("aside");
+	var asides = curslide.getElementsByTagName("aside");
 	for (var i=0; i<asides.length; ++i) if (!asides[i].classList.contains("current"))
 	{
 		asides[i].classList.add("current");
@@ -16,7 +16,7 @@ function prev_slide()
 {
 	//See if there are any visible <aside> blocks. If so,
 	//hide one and that's it.
-	var asides = slide.getElementsByTagName("aside");
+	var asides = curslide.getElementsByTagName("aside");
 	for (var i=asides.length-1; i>=0; --i) if (asides[i].classList.contains("current"))
 	{
 		asides[i].classList.remove("current");
@@ -25,8 +25,9 @@ function prev_slide()
 	change_slide("previousSibling");
 }
 
-function change_slide()
+function change_slide(sib)
 {
+	var slide = curslide, lastslide = curslide;
 	do
 	{
 		slide = slide[sib];
@@ -47,7 +48,6 @@ function change_slide()
 
 function keypress(event)
 {
-	var slide = curslide, lastslide = curslide;
 	var sib = "previousSibling";
 	switch (event.keyIdentifier || event.key) /* keyIdentifier is NOT OFFICIALLY SUPPORTED */
 	{
@@ -65,7 +65,7 @@ function keypress(event)
 			break;
 		case "U+00BE": //Screen-blank
 		case ".":
-			slide.classList.toggle("current");
+			curslide.classList.toggle("current");
 			//Use the Blank button to stop videos
 			var videos = slide.getElementsByTagName("video");
 			for (var i=0; i<videos.length; ++i)
