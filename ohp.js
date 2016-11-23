@@ -1,4 +1,4 @@
-let curslide;
+let curslide, slideidx = 0;
 function next_slide()
 {
 	//See if there are any <aside> blocks still hidden. If so,
@@ -7,9 +7,10 @@ function next_slide()
 	for (let i=0; i<asides.length; ++i) if (!asides[i].classList.contains("current"))
 	{
 		asides[i].classList.add("current");
+		++slideidx;
 		return;
 	}
-	change_slide("nextSibling");
+	if (change_slide("nextSibling")) ++slideidx;
 }
 
 function prev_slide()
@@ -20,9 +21,10 @@ function prev_slide()
 	for (let i=asides.length-1; i>=0; --i) if (asides[i].classList.contains("current"))
 	{
 		asides[i].classList.remove("current");
+		--slideidx;
 		return;
 	}
-	change_slide("previousSibling");
+	if (change_slide("previousSibling")) --slideidx;
 }
 
 function change_slide(sib)
@@ -31,7 +33,7 @@ function change_slide(sib)
 	do
 	{
 		slide = slide[sib];
-		if (!slide) return; //End of slides, stop
+		if (!slide) return false; //End of slides, stop
 	} while (slide.nodeName != "SECTION");
 	lastslide.classList.remove("current");
 	slide.classList.add("current");
@@ -40,6 +42,7 @@ function change_slide(sib)
 	for (let v of slide.getElementsByTagName("video")) v.play();
 	//And pause on departure (doesn't rewind though)
 	for (let v of lastslide.getElementsByTagName("video")) v.pause();
+	return true;
 }
 
 function keypress(event)
@@ -85,4 +88,7 @@ function findfirst()
 			sec.classList.add("bgimg"); //Apply other styles there, for simplicity
 		}
 	}
+	//TODO: Get something from the server saying "start here"
+	//This would be the slideidx from the master.
+	//let n = 5; while (n--) next_slide();
 }
