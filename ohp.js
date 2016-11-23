@@ -37,9 +37,9 @@ function change_slide(sib)
 	slide.classList.add("current");
 	curslide = slide;
 	//Autoplay videos on arrival
-	slide.getElementsByTagName("video").foreach(v => v.play());
+	for (let v of slide.getElementsByTagName("video")) v.play();
 	//And pause on departure (doesn't rewind though)
-	lastslide.getElementsByTagName("video").foreach(v => v.pause());
+	for (let v of lastslide.getElementsByTagName("video")) v.pause();
 }
 
 function keypress(event)
