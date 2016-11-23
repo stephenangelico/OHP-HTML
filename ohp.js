@@ -1,10 +1,10 @@
-var curslide;
+let curslide;
 function next_slide()
 {
 	//See if there are any <aside> blocks still hidden. If so,
 	//unhide one and that's it.
-	var asides = curslide.getElementsByTagName("aside");
-	for (var i=0; i<asides.length; ++i) if (!asides[i].classList.contains("current"))
+	let asides = curslide.getElementsByTagName("aside");
+	for (let i=0; i<asides.length; ++i) if (!asides[i].classList.contains("current"))
 	{
 		asides[i].classList.add("current");
 		return;
@@ -16,8 +16,8 @@ function prev_slide()
 {
 	//See if there are any visible <aside> blocks. If so,
 	//hide one and that's it.
-	var asides = curslide.getElementsByTagName("aside");
-	for (var i=asides.length-1; i>=0; --i) if (asides[i].classList.contains("current"))
+	let asides = curslide.getElementsByTagName("aside");
+	for (let i=asides.length-1; i>=0; --i) if (asides[i].classList.contains("current"))
 	{
 		asides[i].classList.remove("current");
 		return;
@@ -27,7 +27,7 @@ function prev_slide()
 
 function change_slide(sib)
 {
-	var slide = curslide, lastslide = curslide;
+	let slide = curslide, lastslide = curslide;
 	do
 	{
 		slide = slide[sib];
@@ -37,18 +37,13 @@ function change_slide(sib)
 	slide.classList.add("current");
 	curslide = slide;
 	//Autoplay videos on arrival
-	var videos = slide.getElementsByTagName("video");
-	for (var i=0; i<videos.length; ++i)
-		videos[i].play();
+	slide.getElementsByTagName("video").foreach(v => v.play());
 	//And pause on departure (doesn't rewind though)
-	var videos = lastslide.getElementsByTagName("video");
-	for (var i=0; i<videos.length; ++i)
-		videos[i].pause();
+	lastslide.getElementsByTagName("video").foreach(v => v.pause());
 }
 
 function keypress(event)
 {
-	var sib = "previousSibling";
 	switch (event.keyIdentifier || event.key) /* keyIdentifier is NOT OFFICIALLY SUPPORTED */
 	{
 		case "U+0020":
@@ -67,24 +62,21 @@ function keypress(event)
 		case ".":
 			curslide.classList.toggle("current");
 			//Use the Blank button to stop videos
-			var videos = slide.getElementsByTagName("video");
-			for (var i=0; i<videos.length; ++i)
-				videos[i].pause();
-			return;
+			slide.getElementsByTagName("video").foreach(v => v.pause());
+			break;
 		default:
 			console.log(event);
-			return;
+			break;
 	}
 }
 
 function findfirst()
 {
-	var sections = document.getElementsByTagName("section");
+	let sections = document.getElementsByTagName("section");
 	curslide = sections[0];
 	curslide.classList.add("current");
-	for (var i=0; i < sections.length; ++i)
+	for (let sec of sections)
 	{
-		var sec = sections[i];
 		if (sec.classList.contains("showcase"))
 			sec.innerHTML = '<div style="background-image: url(' + sec.innerHTML + ')"></div>';
 		if (sec.dataset.bg)
