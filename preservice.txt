@@ -30,7 +30,6 @@ Rej 294 Aurelia
 Rej 295 Austria
 Rej 296 Glorious
 Rej 368 Working Out
-Rej 370 Jesus Saves (to MP 730)
 Rej 371 Message
 Rej 400 Sagina
 Rej 401 Anchor
@@ -44,6 +43,7 @@ Rej 459 Banner
 Rej 460 Stand Up
 Rej 461 Soldiers
 Rej 462 Faith
+Rej 479 Valiant
 Rej 480 Rhondda
 Rej 502 Story
 Rej 503 Waited
