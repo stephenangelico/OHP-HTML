@@ -3,11 +3,8 @@ If the tune in a lower-priority book is better, use the identifier from the high
 
 Pre-service singing ideas - remove from this list once they're in the main history
 
-Dec 4th: MP 236 (already in git)
-
 Rej 1 Rejoice
 Rej 2 Last Us
-Rej 8 Subterranean
 Rej 9 Hanover
 Rej 32 Dambusters
 Rej 46 Praise
