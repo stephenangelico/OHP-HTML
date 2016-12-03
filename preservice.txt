@@ -37,7 +37,7 @@ Rej 416 Friend
 Rej 421 Repton421
 Rej 440 Deep
 Rej 449 Redeemed (RCM 183)
-Rej 450 Trusting
+Rej 450 Trusting [??]
 Rej 456 Lord's Side
 Rej 459 Banner
 Rej 460 Stand Up
@@ -55,6 +55,7 @@ Rej 590 Zion
 Rej 601 Safe
 Rej 603 Ewing/Let Her Go
 MP 37 Deer
+MP 151 Power x2
 MP 163 Rising (RCM 116)
 MP 181 Freely
 MP 445 Light
