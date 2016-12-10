@@ -31,12 +31,12 @@ Rej 368 Working Out
 Rej 371 Message
 Rej 400 Sagina
 Rej 401 Anchor
+Rej 410 Trusting
 Rej 414 Near The Cross
 Rej 416 Friend
 Rej 421 Repton421
 Rej 440 Deep
 Rej 449 Redeemed (RCM 183)
-Rej 450 Trusting [??]
 Rej 456 Lord's Side
 Rej 459 Banner
 Rej 460 Stand Up
@@ -46,6 +46,7 @@ Rej 479 Valiant
 Rej 480 Rhondda
 Rej 502 Story
 Rej 503 Waited
+Rej 540 Trusting
 Rej 577 Promises
 Rej 582 Solid Rock
 Rej 587 Wonderful Change
