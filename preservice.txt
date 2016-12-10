@@ -19,7 +19,6 @@ Rej 134 Praise
 Rej 138 Vuelie
 Rej 144 Reign
 Rej 151 Name
-Rej 158 Story
 Rej 169 Who Is He
 Rej 204 Rugged
 Rej 210 Beneath
@@ -47,7 +46,6 @@ Rej 479 Valiant
 Rej 480 Rhondda
 Rej 502 Story
 Rej 503 Waited
-Rej 522 Hydrofoil
 Rej 577 Promises
 Rej 582 Solid Rock
 Rej 587 Wonderful Change
