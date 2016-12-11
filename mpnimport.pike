@@ -161,20 +161,20 @@ int main(int argc, array(string) argv)
 	{
 		mapping(string:mapping(int:array(string))) titles = ([]);
 		//The current state is represented by the most recent commit that changed slides.html.
-		string hashes = Process.run(({"git", "log", "-1", "--pretty=%H %ai %ar", "slides.html"}))->stdout;
+		string hashes = Process.run(({"git", "log", "-1", "--pretty=%H", "slides.html"}))->stdout;
 		//Previous states are those which add/remove appropriately-formatted heading tags.
 		hashes += Process.run(({
-			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H %ai %ar", "slides.html"
+			//Note that the "pretty" format sticks a caret after the hash. We'll use that :)
+			//The first hash (for the most recent state) is what we want; the others, go one back.
+			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H^", "slides.html"
 		}))->stdout;
 		int booklen, titlelen, datelen;
 		foreach (String.trim_all_whites(hashes)/"\n", string sha1)
 		{
 			//TODO: Have different options governing the time display.
-			//TODO: The timestamps currently are of the commits that _remove_ information.
-			//It'd be better to show the timestamp of one commit previous - the one that
-			//still had it - or even of the commit that actually added it.
-			sscanf(sha1, "%s %s %s %s %s", sha1, string date, string time, string tz, string relative);
-			string text = utf8_to_string(Process.run(({"git", "show", sha1 + "^:slides.html"}))->stdout);
+			sscanf(Process.run(({"git", "show", sha1, "--pretty=%H %ai %ar"}))->stdout,
+				"%s %s %s %s %s\n", string creator, string date, string time, string tz, string relative);
+			string text = utf8_to_string(Process.run(({"git", "show", sha1 + ":slides.html"}))->stdout);
 			while (sscanf(text, "%*s<h3>%s</h3>%s", string hdr, text) == 3)
 				if (sscanf(hdr, "%[A-Za-z] %d: %s", string book, int num, string title) == 3)
 				{
