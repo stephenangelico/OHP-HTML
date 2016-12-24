@@ -49,7 +49,6 @@ Rej 503 Waited
 Rej 540 Trusting
 Rej 577 Promises
 Rej 582 Solid Rock
-Rej 587 Wonderful Change
 Rej 601 Safe
 Rej 603 Ewing/Let Her Go
 MP 37 Deer
