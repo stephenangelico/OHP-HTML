@@ -28,7 +28,6 @@ Rej 258 Georgia
 Rej 294 Aurelia
 Rej 295 Austria
 Rej 296 Glorious
-Rej 368 Working Out
 Rej 371 Message
 Rej 400 Sagina
 Rej 401 Anchor
