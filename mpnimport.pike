@@ -166,7 +166,7 @@ int main(int argc, array(string) argv)
 		hashes += Process.run(({
 			//Note that the "pretty" format sticks a caret after the hash. We'll use that :)
 			//The first hash (for the most recent state) is what we want; the others, go one back.
-			"git", "log", "-S", "<h3>[A-Za-z0-9 ]+: ", "--pickaxe-regex", "--pretty=%H^", "slides.html"
+			"git", "log", "-G", "<h3>[A-Za-z0-9 ]+: ", "--pretty=%H^", "slides.html"
 		}))->stdout;
 		int booklen, titlelen, datelen;
 		foreach (String.trim_all_whites(hashes)/"\n", string sha1)
