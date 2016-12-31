@@ -209,6 +209,12 @@ int main(int argc, array(string) argv)
 	sscanf(current, "%s<section", string header);
 	string footer = (current / "</section>")[-1];
 
+	if (argc > 3 && lower_case(argv[1]) == "show")
+	{
+		write(string_to_utf8(mpn_Hymn(sprintf("Hymn [%s %s] ...", argv[2], argv[3]))) + "\n");
+		return 0;
+	}
+
 	if (argc > 1 && (argc&1))
 	{
 		array(string) parts = ({ });
