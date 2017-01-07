@@ -43,6 +43,7 @@ Rej 461 Soldiers
 Rej 462 Faith
 Rej 479 Valiant
 Rej 480 Rhondda
+Rej 481 Shepherd
 Rej 502 Story
 Rej 503 Waited
 Rej 540 Trusting
@@ -51,7 +52,6 @@ Rej 582 Solid Rock
 Rej 601 Safe
 Rej 603 Ewing/Let Her Go
 MP 37 Deer
-MP 151 Power x2
 MP 163 Rising (RCM 116)
 MP 181 Freely
 MP 445 Light
