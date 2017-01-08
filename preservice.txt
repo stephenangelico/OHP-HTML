@@ -54,6 +54,7 @@ Rej 603 Ewing/Let Her Go
 MP 37 Deer
 MP 163 Rising (RCM 116)
 MP 181 Freely
+MP 333 Loving Kindness
 MP 445 Light
 MP 523 Valleys
 MP 544 Illumine
