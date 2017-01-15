@@ -60,6 +60,7 @@ MP 523 Valleys
 MP 544 Illumine
 MP 790 Hiding Place
 MP 969 Forever Grateful (RCM 512)
+MP 1087 Throne of Grace
 PP 3 By Faith
 RCM 76 Mountain
 RCM 250 I will arise
