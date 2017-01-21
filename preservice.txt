@@ -3,7 +3,6 @@ If the tune in a lower-priority book is better, use the identifier from the high
 
 Pre-service singing ideas - remove from this list once they're in the main history
 
-Rej 1 Rejoice
 Rej 2 Last Us
 Rej 9 Hanover
 Rej 32 Dambusters
@@ -12,7 +11,6 @@ Rej 56 Trump Vol
 Rej 61 Church Triumphant
 Rej 63 '63'
 Rej 70 Praise
-Rej 88 Now Thank
 Rej 91 Moscow
 Rej 128 Thousand Tongues
 Rej 134 Praise
@@ -46,7 +44,6 @@ Rej 480 Rhondda
 Rej 481 Shepherd
 Rej 502 Story
 Rej 503 Waited
-Rej 540 Trusting
 Rej 577 Promises
 Rej 582 Solid Rock
 Rej 601 Safe
