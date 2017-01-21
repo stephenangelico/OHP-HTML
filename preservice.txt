@@ -25,7 +25,6 @@ Rej 254 Helmsley
 Rej 258 Georgia
 Rej 294 Aurelia
 Rej 295 Austria
-Rej 296 Glorious
 Rej 371 Message
 Rej 400 Sagina
 Rej 401 Anchor
@@ -34,7 +33,6 @@ Rej 414 Near The Cross
 Rej 416 Friend
 Rej 421 Repton421
 Rej 449 Redeemed (RCM 183)
-Rej 456 Lord's Side
 Rej 459 Banner
 Rej 460 Stand Up
 Rej 461 Soldiers
