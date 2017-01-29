@@ -1,4 +1,6 @@
 let curslide, slideidx = 0;
+let announce_pos = (n) => null; //Proclaim to the websocket, if we have one.
+
 function next_slide()
 {
 	//See if there are any <aside> blocks still hidden. If so,
@@ -7,10 +9,10 @@ function next_slide()
 	for (let i=0; i<asides.length; ++i) if (!asides[i].classList.contains("current"))
 	{
 		asides[i].classList.add("current");
-		++slideidx;
+		announce_pos(++slideidx);
 		return;
 	}
-	if (change_slide("nextSibling")) ++slideidx;
+	if (change_slide("nextSibling")) announce_pos(++slideidx);
 }
 
 function prev_slide()
@@ -21,10 +23,10 @@ function prev_slide()
 	for (let i=asides.length-1; i>=0; --i) if (asides[i].classList.contains("current"))
 	{
 		asides[i].classList.remove("current");
-		--slideidx;
+		announce_pos(--slideidx);
 		return;
 	}
-	if (change_slide("previousSibling")) --slideidx;
+	if (change_slide("previousSibling")) announce_pos(--slideidx);
 }
 
 function change_slide(sib)
@@ -88,6 +90,27 @@ function findfirst()
 			sec.classList.add("bgimg"); //Apply other styles there, for simplicity
 		}
 	}
+	if (window.socketid)
+	{
+		const protocol = window.location.protocol == "https:" ? "wss://" : "ws://";
+		const socket = new WebSocket(protocol + window.location.host + "/ws");
+		let active = false;
+		socket.onopen = () => socket.send(JSON.stringify({type: "socketid", data: window.socketid}))
+		announce_pos = (n) => active && socket.send(JSON.stringify({type: "setpos", data: n}))
+		socket.onmessage = (ev) => {
+			const data = JSON.parse(ev.data);
+			if (data.type !== "position") return; //Only one recognized message so far.
+			let offset = data.data - slideidx;
+			console.log("I'm at", slideidx, "and need to go to", data.data, "so we move", offset);
+			//While we're updating position, don't announce to other clients.
+			active = false;
+			if (offset > 0) while (offset--) next_slide();
+			else if (offset < 0) while (offset++) prev_slide();
+			//We only begin announcing once we've heard from the server for the first time.
+			active = true;
+		};
+	}
+
 	//TODO: Get something from the server saying "start here"
 	//This would be the slideidx from the master.
 	//let n = 5; while (n--) next_slide();

@@ -44,7 +44,8 @@ class Room:
 				resp = {"type": "position", "data": self.position}
 			if resp is None: continue
 			for client in self.clients:
-				client.send_json(resp)
+				if client is not ws: # Announce only to others, to prevent hysteresis
+					client.send_json(resp)
 
 		self.clients.remove(ws)
 		await ws.close()
