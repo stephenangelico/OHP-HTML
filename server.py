@@ -4,6 +4,7 @@ import sys
 import json
 import socket
 import asyncio
+import hashlib
 from aiohttp import web, WSMsgType
 
 app = web.Application()
@@ -79,9 +80,11 @@ def route(url):
 
 @route("/")
 async def home(req):
-	with open("build/index.html") as f:
+	with open("slides.html") as f:
 		txt = f.read()
 		# Add a unique ID based on the content
+		# This breaks all caching. I'd really like the browser to calculate
+		# a hash based on the actual content. :(
 		txt = txt.replace("<script",
 			"<script>window.socketid = %r</script><script" % hashlib.md5(txt.encode()).hexdigest(),
 			1)
@@ -110,7 +113,8 @@ async def websocket(req):
 	return await rooms[room].websocket(ws)
 
 # After all the custom routes, handle everything else by loading static files.
-app.router.add_static("/", path="build", name="static")
+# Note that this can reveal the source code, so don't have anything sensitive.
+app.router.add_static("/", path=".", name="static")
 
 # Lifted from appension
 async def serve_http(loop, port, sock=None):
