@@ -92,6 +92,8 @@ function findfirst()
 	}
 	if (window.socketid)
 	{
+		//We were given a socket ID, which almost certainly means we're running off the
+		//synchronization server. Establish a websocket connection and maintain position.
 		const protocol = window.location.protocol == "https:" ? "wss://" : "ws://";
 		const socket = new WebSocket(protocol + window.location.host + "/ws");
 		let active = false;
