@@ -75,7 +75,7 @@ function keypress(event)
 	}
 }
 
-function findfirst()
+function setup()
 {
 	let sections = document.getElementsByTagName("section");
 	curslide = sections[0];
