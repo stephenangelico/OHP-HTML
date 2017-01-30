@@ -110,8 +110,4 @@ function findfirst()
 			active = true;
 		};
 	}
-
-	//TODO: Get something from the server saying "start here"
-	//This would be the slideidx from the master.
-	//let n = 5; while (n--) next_slide();
 }
