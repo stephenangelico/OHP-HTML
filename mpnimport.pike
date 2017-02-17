@@ -65,6 +65,8 @@ string mpn_Welcome = #"<section data-bg=\"SolidDirt.png\">
 string mpn_Opening = ""; //Opening Prayer
 string mpn_Prayer = "";
 string mpn_Announcements = "";
+string mpn_Church = ""; //Special case - Church Update (might never be used again, but whatevs)
+string mpn_Children = ""; //No automatic slides for the children's talk. If there are any, add them manually.
 string mpn_Offering = "";
 string mpn_The = ""; //The Lord's Supper. Probably should make this a function that verifies.
 string mpn_Mission = "";
