@@ -1,18 +1,73 @@
 # OHP-HTML
 Simple HTML overhead projector slides
 
+This project is designed to provide a simple way of displaying church service
+slides on a projector screen.
+
+File Purposes
+=============
+
+Cross.png, SolidDirt.png: Welcome slide images
+mpnimport.pike: script for automatic importing of relevant hymns
+ohp.css, oph.js: supporting files for slides.html
+preservice.txt: hymns not yet in database
+projectorwindow.html: Opens a window of size to match projector for testing
+README.md: this file
+requirements.txt: depended libraries for web app deployment
+server.py: server for synchronized slides on multiple devices
+slides.html: main slides content file
+sup.html: handy conversion tool to get superscript numbers
+
+Content Format
+==============
+
+The main content file (slides.html) is a standard HTML5 page, structured to
+show one slide at a time. The first nine lines of the file need not be touched
+by content editors. The content starts with the first <section> tag.
+
+TODO: Tag explanation
+
 To remotely switch between Chrome (running these overheads) and LibreOffice
 (for backwards compatibility), these bash aliases may be useful:
 
     alias lo='env DISPLAY=:0.0 wmctrl -a 5.1'
     alias ch='env DISPLAY=:0.0 wmctrl -a Chrome'
 
+Socket.io Server
+================
+
+This server allows the slides to be displayed and controlled from any machine
+connected to the server. It is a Python 3 script that requires the aiohttp
+module to run. Once dependencies are satisfied, simply run:
+
+    python3 server.py
+    
+in a terminal from the OHP-HTML directory.
+
+TODO: Socket.io to synchronize master(s) with slaves(s). Might also make reload
+not reset to start of slides.
+
+MPN Import
+==========
+
+Rather than having to type or copy each hymn every time it is needed, it is
+possible to recall the entire hymn, with tags, from past use in slides.html.
+
+mpnimport.pike is a Pike script ([interpreter](https://pike.lysator.liu.se/))
+that can run in three different modes:
+- By default, look at [MPN][1] and create slides automatically.
+- With hymn references as arguments, create slides just for those hymns
+- With the `list` argument, lists hymns it can find in Git history.
+
 Correct detection of hymns for MPN import depends on their unique IDs. These
 should consist of a source identifier and a hymn number, eg "Rej 246" or "PP 3"
 or "MP 15", with the space included.
 
-TODO: Socket.io to synchronize master(s) with slaves(s). Might also make reload
-not reset to start of slides.
+If hymns cannot be found in Git history, a skeleton hymn section is created for
+the content editors to enter manually.
+
+Licences
+========
 
 The code in this repository is MIT-licensed. Hymn texts are copyright by their
 original owners, and their use is governed by the appropriate licenses eg CCLI;
@@ -37,3 +92,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
 SOFTWARE.
+
+[1]: http://gideon.kepl.com.au:8000/mpn_read.html#sundaymusic
