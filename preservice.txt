@@ -10,7 +10,6 @@ Rej 46 Praise
 Rej 56 Trump Vol
 Rej 61 Church Triumphant
 Rej 63 '63'
-Rej 70 Praise
 Rej 91 Moscow
 Rej 128 Thousand Tongues
 Rej 134 Praise
@@ -56,7 +55,6 @@ MP 544 Illumine
 MP 790 Hiding Place
 MP 969 Forever Grateful (RCM 512)
 MP 1087 Throne of Grace
-PP 3 By Faith
 RCM 76 Mountain
 RCM 250 I will arise
 RCM 301 Canopy
