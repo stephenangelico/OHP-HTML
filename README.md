@@ -56,7 +56,7 @@ Other recognized tags and their purposes:
 - `<h3>`: Smaller heading, used for hymn titles
 - `<address>`: Large vertically centered text, used for Bible readings
 - `<cite>`: Small print in bottom right corner. Used for copyright notices.
-- `<aside>: TBC
+- `<aside>`: TBC
 - `<img src="imagename.png">`: In-line image
 - `<section data-bg="background.png">`: Background image
 
