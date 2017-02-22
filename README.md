@@ -7,25 +7,58 @@ slides on a projector screen.
 File Purposes
 =============
 
-Cross.png, SolidDirt.png: Welcome slide images
-mpnimport.pike: script for automatic importing of relevant hymns
-ohp.css, oph.js: supporting files for slides.html
-preservice.txt: hymns not yet in database
-projectorwindow.html: Opens a window of size to match projector for testing
-README.md: this file
-requirements.txt: depended libraries for web app deployment
-server.py: server for synchronized slides on multiple devices
-slides.html: main slides content file
-sup.html: handy conversion tool to get superscript numbers
+- Cross.png, SolidDirt.png: Welcome slide images
+- mpnimport.pike: script for automatic importing of relevant hymns
+- ohp.css, oph.js: supporting files for slides.html
+- preservice.txt: hymns not yet in database
+- projectorwindow.html: Opens a window of size to match projector for testing
+- README.md: this file
+- requirements.txt: depended libraries for web app deployment
+- server.py: server for synchronized slides on multiple devices
+- slides.html: main slides content file
+- sup.html: handy conversion tool to get superscript numbers
 
 Content Format
 ==============
 
+This section assumes little knowledge of HTML.
+
 The main content file (slides.html) is a standard HTML5 page, structured to
 show one slide at a time. The first nine lines of the file need not be touched
-by content editors. The content starts with the first <section> tag.
+by content editors. The content starts with the first `<section>` tag. The
+contents of a slide are contained within the `<section>` and `</section>` tags.
 
-TODO: Tag explanation
+```html
+<section><h3>Crown Him
+With Many Crowns</h3></section>
+<section>
+1. Crown Him with many crowns,
+the Lamb upon His throne,
+Hark! how the heavenly anthem drowns
+all music but its own!
+</section>
+<section>
+Awake, my soul, and sing
+of Him who died for thee
+and hail him as thy matchless King
+through all eternity.
+</section>
+```
+
+In this block, the first slide would contain the hymn title, and the next would
+hold the first half of the first verse, and so on. To have a refrain slide, use
+`<section class=refrain>` to open instead of a standard `<section>`. It is
+still closed with a standard `</section>`.
+
+Other recognized tags and their purposes:
+
+- `<h1>`: Large heading, used in Welcome slide
+- `<h3>`: Smaller heading, used for hymn titles
+- `<address>`: Large vertically centered text, used for Bible readings
+- `<cite>`: Small print in bottom right corner. Used for copyright notices.
+- `<aside>: TBC
+- `<img src="imagename.png">`: In-line image
+- `<section data-bg="background.png">`: Background image
 
 To remotely switch between Chrome (running these overheads) and LibreOffice
 (for backwards compatibility), these bash aliases may be useful:
