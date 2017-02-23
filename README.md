@@ -54,11 +54,15 @@ Other recognized tags and their purposes:
 
 - `<h1>`: Large heading, used in Welcome slide
 - `<h3>`: Smaller heading, used for hymn titles
+- `<b>`, `<i>, `<u>`: Bold, italic and underline, respectively
 - `<address>`: Large vertically centered text, used for Bible readings
-- `<cite>`: Small print in bottom right corner. Used for copyright notices.
-- `<aside>`: TBC
+- `<cite>`: Small print in bottom right corner, used for copyright notices
+- `<aside>`: Not initially shown on slide; each aside is displayed on advance
+- `<footer>`: Heading-sized text at bottom of slide
 - `<img src="imagename.png">`: In-line image
 - `<section data-bg="background.png">`: Background image
+- `<section class=smaller>`: Uses a smaller text size, useful for sermon slides
+- `<section class=refrain>`: Italicizes hymn text for refrains
 
 To remotely switch between Chrome (running these overheads) and LibreOffice
 (for backwards compatibility), these bash aliases may be useful:
