@@ -54,7 +54,7 @@ Other recognized tags and their purposes:
 
 - `<h1>`: Large heading, used in Welcome slide
 - `<h3>`: Smaller heading, used for hymn titles
-- `<b>`, `<i>, `<u>`: Bold, italic and underline, respectively
+- `<b>`, `<i>`, `<u>`: Bold, italic and underline, respectively
 - `<address>`: Large vertically centered text, used for Bible readings
 - `<cite>`: Small print in bottom right corner, used for copyright notices
 - `<aside>`: Not initially shown on slide; each aside is displayed on advance
