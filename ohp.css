@@ -12,8 +12,8 @@ body {
 }
 section {
 	position: fixed;
-	width: calc(100% - 20px);
-	height: calc(100% - 20px);
+	width: calc(100% - 40px);
+	height: calc(100% - 40px);
 	display: none;
 	background-color: #101040;
 	color: #F0F0C0;
