@@ -4,32 +4,18 @@ Simple HTML overhead projector slides
 This project is designed to provide a simple way of displaying church service
 slides on a projector screen.
 
-File Purposes
-=============
-
-- Cross.png, SolidDirt.png: Welcome slide images
-- mpnimport.pike: script for automatic importing of relevant hymns
-- ohp.css, oph.js: supporting files for slides.html
-- preservice.txt: hymns not yet in database
-- projectorwindow.html: Opens a window of size to match projector for testing
-- README.md: this file
-- requirements.txt: depended libraries for web app deployment
-- server.py: server for synchronized slides on multiple devices
-- slides.html: main slides content file
-- sup.html: handy conversion tool to get superscript numbers
-
 Content Format
 ==============
 
 This section assumes little knowledge of HTML.
 
-The main content file (slides.html) is a standard HTML5 page, structured to
+The main content file (slides.html) is a standard HTML page, structured to
 show one slide at a time. The first nine lines of the file need not be touched
 by content editors. The content starts with the first `<section>` tag. The
 contents of a slide are contained within the `<section>` and `</section>` tags.
 
 ```html
-<section><h3>Crown Him
+<section><h3>Rej 246: Crown Him
 With Many Crowns</h3></section>
 <section>
 1. Crown Him with many crowns,
@@ -45,44 +31,19 @@ through all eternity.
 </section>
 ```
 
-In this block, the first slide would contain the hymn title, and the next would
-hold the first half of the first verse, and so on. To have a refrain slide, use
-`<section class=refrain>` to open instead of a standard `<section>`. It is
-still closed with a standard `</section>`.
+In this block, the first slide would contain the hymn reference and title, and
+subsequent slides contain the verses (possibly split).
 
 Other recognized tags and their purposes:
 
-- `<h1>`: Large heading, used in Welcome slide
-- `<h3>`: Smaller heading, used for hymn titles
-- `<b>`, `<i>`, `<u>`: Bold, italic and underline, respectively
-- `<address>`: Large vertically centered text, used for Bible readings
-- `<cite>`: Small print in bottom right corner, used for copyright notices
-- `<aside>`: Not initially shown on slide; each aside is displayed on advance
-- `<footer>`: Heading-sized text at bottom of slide
-- `<img src="imagename.png">`: In-line image
-- `<section data-bg="background.png">`: Background image
-- `<section class=smaller>`: Uses a smaller text size, useful for sermon slides
-- `<section class=refrain>`: Italicizes hymn text for refrains
-
-To remotely switch between Chrome (running these overheads) and LibreOffice
-(for backwards compatibility), these bash aliases may be useful:
-
-    alias lo='env DISPLAY=:0.0 wmctrl -a 5.1'
-    alias ch='env DISPLAY=:0.0 wmctrl -a Chrome'
-
-Socket.io Server
-================
-
-This server allows the slides to be displayed and controlled from any machine
-connected to the server. It is a Python 3 script that requires the aiohttp
-module to run. Once dependencies are satisfied, simply run:
-
-    python3 server.py
-    
-in a terminal from the OHP-HTML directory.
-
-TODO: Socket.io to synchronize master(s) with slaves(s). Might also make reload
-not reset to start of slides.
+- `<h3>`: Hymn (etc) title
+- `<address>`: Scripture reference
+- `<cite>`: Copyright notice
+- `<aside>`: Subsection of slide shown separately
+- `<section data-bg="image.png">`: Full-slide image
+- `<section class=smaller>`: Smaller text size, eg for sermon slides
+- `<section class=refrain>`: Italicized hymn text for refrains
+- `<b>`, `<i>`, `<u>`: Bold, italic, underline (surround parts of text)
 
 MPN Import
 ==========
@@ -92,7 +53,8 @@ possible to recall the entire hymn, with tags, from past use in slides.html.
 
 mpnimport.pike is a Pike script ([interpreter](https://pike.lysator.liu.se/))
 that can run in three different modes:
-- By default, look at [MPN][1] and create slides automatically.
+- By default, look at [MPN](http://gideon.rosuav.com:8000/mpn_read.html#sundaymusic)
+  and create slides automatically.
 - With hymn references as arguments, create slides just for those hymns
 - With the `list` argument, lists hymns it can find in Git history.
 
@@ -110,7 +72,7 @@ The code in this repository is MIT-licensed. Hymn texts are copyright by their
 original owners, and their use is governed by the appropriate licenses eg CCLI;
 data usage is not covered by the below text.
 
-Copyright (c) 2016, Chris Angelico
+Copyright (c) 2016-2017, Chris Angelico
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of 
 this software and associated documentation files (the "Software"), to deal in 
@@ -129,5 +91,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
 SOFTWARE.
-
-[1]: http://gideon.kepl.com.au:8000/mpn_read.html#sundaymusic
