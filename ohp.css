@@ -37,6 +37,8 @@ aside {
 
 .black {
 	background-color: black;
+	color: white;
+	font-weight: normal;
 }
 
 .refrain {
