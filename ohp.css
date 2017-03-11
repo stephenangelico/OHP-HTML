@@ -38,7 +38,6 @@ aside {
 .black {
 	background-color: black;
 	color: white;
-	font-weight: normal;
 }
 
 .refrain {
@@ -52,6 +51,8 @@ aside {
 }
 
 .smaller {
+	background-color: black;
+	color: white;
 	font-size: 180%;
 }
 
