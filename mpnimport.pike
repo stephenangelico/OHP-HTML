@@ -59,6 +59,9 @@ string sermonnotes = "";
 string mpn_Welcome = #"<section data-bg=\"SolidDirt.png\">
 <h3><img src=\"Cross.png\"> Ashburton Presbyterian Church</h3>
 <p></p>
+<p></p>
+<p></p>
+<p></p>
 <h1>Welcome</h1>
 <footer>Finding solid ground in Christ</footer>
 </section>";
