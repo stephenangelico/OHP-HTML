@@ -61,7 +61,6 @@ string mpn_Welcome = #"<section data-bg=\"SolidDirt.png\">
 <p></p>
 <p></p>
 <p></p>
-<p></p>
 <h1>Welcome</h1>
 <footer>Finding solid ground in Christ</footer>
 </section>";
