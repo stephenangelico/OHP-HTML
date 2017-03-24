@@ -119,14 +119,17 @@ string mpn_Hymn(string line)
 	if (sha1 == "")
 	{
 		//No such hymn found. Create a stub.
+		string copy = "\xA9 1900-2000 Someone, Somewhere";
+		//Rejoice! hymns are likely to be copyright to the Pressy Church.
+		if (has_prefix(id, "Rej ")) copy = "[Author Name], Rejoice! \xA9 Presbyterian Church Australia";
 		return sprintf(#"<section>
 <h3>%s: %s</h3>
 
 </section>
 <section>
 
-<cite>\xA9 1900-2000 Someone, Somewhere</cite>
-</section>", id, titlehint);
+<cite>%s</cite>
+</section>", id, titlehint, copy);
 	}
 	//Awesome! We have a SHA1 that *removed* this hymn ID.
 	//Most likely, it removed the whole hymn text, but we don't care. All we
