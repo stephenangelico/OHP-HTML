@@ -113,6 +113,19 @@ async def websocket(req):
 	if room not in rooms: Room(room)
 	return await rooms[room].websocket(ws)
 
+# Some things don't seem to work with the default static router.
+# Since I currently don't have time to figure out why, just this.
+def hackstatic():
+	for fn in os.listdir():
+		# Serve video files this way
+		if fn.split(".")[-1] not in {"mkv", "avi", "mp4"}: continue
+		with open(fn, "rb") as _f:
+			content = _f.read()
+		@route("/" + fn)
+		async def video(req):
+			return web.Response(body=content)
+hackstatic()
+
 # After all the custom routes, handle everything else by loading static files.
 # Note that this can reveal the source code, so don't have anything sensitive.
 app.router.add_static("/", path=".", name="static")
