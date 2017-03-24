@@ -153,6 +153,7 @@ string mpn_Bible(string line)
 
 string mpn_Sermon(string line)
 {
+	return ""; //HACK - as of 20170324, sermon outlines aren't being done that way.
 	sscanf(line, "Sermon: %s (", string title);
 	return "<section>\n" + title + "\n" + sermonnotes + "\n</section>";
 }
