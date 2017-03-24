@@ -157,6 +157,18 @@ string mpn_Sermon(string line)
 	return "<section>\n" + title + "\n" + sermonnotes + "\n</section>";
 }
 
+string mpn_Video(string line)
+{
+	sscanf(line, "Video%*[ :-]%s", string title);
+	if (sscanf(reverse(title), ")%*[A-Z]( %s", title)) title = reverse(title); //Trim off a person tag
+	return #"<section>
+<video controls>
+<source src=\"...\">
+</video>
+<cite>" + title + #"</cite>
+</section>";
+}
+
 int main(int argc, array(string) argv)
 {
 	if (argc > 1 && lower_case(argv[1]) == "list")
