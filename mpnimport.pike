@@ -167,7 +167,7 @@ string mpn_Video(string line)
 {
 	sscanf(line, "Video%*[ :-]%s", string title);
 	if (sscanf(reverse(title), ")%*[A-Z]( %s", title)) title = reverse(title); //Trim off a person tag
-	return #"<section>
+	return #"<section class=black>
 <video controls>
 <source src=\"...\" alt=\"" + Protocols.HTTP.quoted_string_encode(title) + #"\">
 </video>
