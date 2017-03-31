@@ -105,3 +105,10 @@ address {
 .flow {
 	float: left;
 }
+
+video {
+	max-width: calc(100% - 60px);
+	max-height: calc(100% - 60px);
+	margin: auto;
+	display: block;
+}
