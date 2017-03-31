@@ -67,7 +67,7 @@ function keypress(event)
 		case ".":
 			curslide.classList.toggle("current");
 			//Use the Blank button to stop videos
-			slide.getElementsByTagName("video").foreach(v => v.pause());
+			curslide.getElementsByTagName("video").foreach(v => v.pause());
 			break;
 		default:
 			console.log(event);
