@@ -244,7 +244,7 @@ int main(int argc, array(string) argv)
 		return 0;
 	}
 
-	string mpn = Protocols.HTTP.get_url_data("http://gideon.kepl.com.au:8000/mpn/sundaymusic.0");
+	string mpn = Protocols.HTTP.get_url_data("http://gideon.rosuav.com:8000/mpn/sundaymusic.0");
 	if (!mpn) exit(1, "Unable to retrieve MPN - are you offline?\n");
 	sscanf(utf8_to_string(mpn), "%d\0%s", int mpnindex, mpn); //Trim off the indexing headers
 
