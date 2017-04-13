@@ -166,7 +166,7 @@ string mpn_Sermon(string line)
 string mpn_Video(string line)
 {
 	sscanf(line, "Video%*[ :-]%s", string title);
-	sscanf(title, "s (%*[A-Z])", title); //Trim off a person tag
+	sscanf(title, "%s (%*[A-Z])", title); //Trim off a person tag
 	return #"<section class=black>
 <video controls>
 <source src=\"...\" alt=\"" + Protocols.HTTP.quoted_string_encode(title) + #"\">
