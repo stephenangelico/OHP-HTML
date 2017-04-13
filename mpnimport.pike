@@ -251,7 +251,7 @@ int main(int argc, array(string) argv)
 	//Assume that MPN consists of several paragraphs, and pick the first one with a hymn.
 	string service;
 	foreach (mpn/"\n\n", string para)
-		if (has_value(para, "\nHymn [")) service = para;
+		if (!service && has_value(para, "\nHymn [")) service = para;
 		else if (service && sermonnotes=="") sermonnotes = para; //Not used for much
 	if (!service) exit(1, "Unable to find Order of Service paragraph in MPN.\n");
 
