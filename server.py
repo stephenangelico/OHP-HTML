@@ -122,7 +122,7 @@ def hackstatic():
 		with open(fn, "rb") as _f:
 			content = _f.read()
 		@route("/" + fn)
-		async def video(req):
+		async def video(req, content=content):
 			return web.Response(body=content)
 hackstatic()
 
