@@ -93,6 +93,7 @@ footer {
 
 h1,h2,h3 {
 	text-align: center;
+	font-style: normal;
 	margin: -1.3em 0 -0.83em 0; padding: 0;
 }
 
