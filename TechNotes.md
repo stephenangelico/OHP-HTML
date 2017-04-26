@@ -4,16 +4,18 @@ Random technical notes
 File Purposes
 -------------
 
+- AshburtonHymnal.md: Disambiguation file for hymns/songs not in a hymnbook
 - Cross.png, SolidDirt.png: Welcome slide images
 - mpnimport.pike: script for automatic importing of relevant hymns
 - ohp.css, oph.js: supporting files for slides.html
 - preservice.txt: hymns not yet in database
 - projectorwindow.html: Opens a window of size to match projector for testing
-- README.md: this file
+- README.md: README. 'Nuff said.
 - requirements.txt: depended libraries for web app deployment
 - server.py: server for synchronized slides on multiple devices
 - slides.html: main slides content file
 - sup.html: handy conversion tool to get superscript numbers
+- TechNotes.md: This file
 
 Handy tools
 -----------
