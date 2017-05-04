@@ -56,7 +56,7 @@ TODO: Scripture references (<address> blocks) to get actual content (<aside>???)
 string current = utf8_to_string(Stdio.read_file("slides.html"));
 string sermonnotes = "";
 
-string mpn_Welcome = #"<section data-bg=\"SolidDirt.png\">
+string mpn_Welcome = #"<section class=\"welcome\" data-bg=\"SolidDirt.png\">
 <h3><img src=\"Cross.png\"> Ashburton Presbyterian Church</h3>
 <p></p>
 <p></p>
