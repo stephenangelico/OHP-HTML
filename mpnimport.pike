@@ -77,7 +77,7 @@ string mpn_Exit = "";
 
 string mpn_Hymn(string line)
 {
-	sscanf(line, "Hymn [%s] %s", string id, string titlehint);
+	sscanf(line, "Hymn%*[:] [%s] %s", string id, string titlehint);
 	if (sscanf(id, "R%d", int rej) && rej) id = "Rej " + rej;
 	if (id == "PP")
 	{
