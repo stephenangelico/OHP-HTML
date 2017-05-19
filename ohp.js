@@ -1,5 +1,6 @@
 let curslide, slideidx = 0;
 let announce_pos = (n) => null; //Proclaim to the websocket, if we have one.
+let bookmark = null;
 
 function next_slide()
 {
@@ -68,6 +69,14 @@ function keypress(event)
 			curslide.classList.toggle("current");
 			//Use the Blank button to stop videos
 			curslide.getElementsByTagName("video").foreach(v => v.pause());
+			break;
+		case "Home": //Jump to first slide
+			bookmark = slideidx;
+			while (slideidx) prev_slide();
+			break;
+		case "z": //Ctrl-Z: Oops, undo hitting Home
+			if (!slideidx && event.ctrlKey && bookmark)
+				while (bookmark--) next_slide();
 			break;
 		default:
 			console.log(event);
