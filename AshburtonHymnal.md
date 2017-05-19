@@ -49,6 +49,7 @@
 | 46 | See Him in Jerusalem | Jerusalem | CityAlight |  |  |
 | 47 | Jesus Paid It All |  | sixsteps Music |  |  |
 | 48 | Facing a Task Unfinished |  | Frank Houghton, Keith & Kristyn Getty |  | MP126 +refrain |
+| 49 | Jesus Is The King |  | Paul Sheely |  |  |
 
 R = Rejoice
 MP = Mission Praise
