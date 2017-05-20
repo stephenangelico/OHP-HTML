@@ -30,7 +30,11 @@ section {
 aside {
 	display: none;
 }
- 
+
+ul {
+	white-space: normal;
+}
+
 .current {
 	display: block;
 }
