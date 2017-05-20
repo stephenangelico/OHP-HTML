@@ -71,18 +71,19 @@ aside {
 
 .sermon {
 	background-color: black;
-	color: #991313;
-	font-family: FreeSerif;
+	color: #C00000;
+	font-family: Ahellya;
+}
+
+.highlight {
+	color: #FFD966;
 }
 
 h4 {
-	font-style: italic;
-	font-size: 250%;
+	font-size: 200%;
 	position: absolute;
 	top: 35%;
-	width: calc(50% - 50px);
-	margin: -1.4em 0 0 0;
-	text-align: center;
+	margin: -1.4em 5em 0 1em;
 	line-height: 150%;
 }
 
