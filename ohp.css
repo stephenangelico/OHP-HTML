@@ -69,24 +69,6 @@ aside {
 	text-shadow: 2px 1px 2px black;
 }
 
-.sermon {
-	background-color: black;
-	color: #C00000;
-	font-family: Ahellya;
-}
-
-.highlight {
-	color: #FFD966;
-}
-
-h4 {
-	font-size: 200%;
-	position: absolute;
-	top: 35%;
-	margin: -1.4em 5em 0 1em;
-	line-height: 150%;
-}
-
 footer {
 	position: absolute;
 	bottom: 5%;
