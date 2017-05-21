@@ -130,3 +130,7 @@ video {
 	margin: auto;
 	display: block;
 }
+
+blockquote {
+	margin-top: 0; margin-bottom: 0;
+}
