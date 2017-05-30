@@ -164,6 +164,7 @@ string mpn_Sermon(string line)
 	string website = "../AshyPC.github.io"; //TODO maybe: allow multiple directory names
 	if (file_stat(website + "/Service_Weekly"))
 	{
+		//Generate an order of service from the main MPN block.
 		array(string) lines = service / "\n";
 		//Go through the lines and bold the beginnings of (most of) them
 		//Also, Bible readings get enumerated.
@@ -179,7 +180,7 @@ string mpn_Sermon(string line)
 			else if (sscanf(line, "%s (%s", string main, string paren) && paren)
 				lines[i] = sprintf("**%s** (%s", main, paren);
 		}
-		Stdio.write_file(website + "/Service_Weekly/Order_Of_Service.md", sprintf(#"---
+		Stdio.write_file(website + "/Service_Weekly/Order_Of_Service.md", string_to_utf8(sprintf(#"---
 layout: oos
 title: Order of Service
 ---
@@ -189,9 +190,31 @@ title: Order of Service
 %{%s
 
 %}**Exit**
-", sermondate, person, lines));
-		Process.create_process(({"git", "-C", website, "commit", "Service_Weekly/Order_Of_Service.md",
-			"-mUpdate order of service from MPN"}))->wait();
+", sermondate, person, lines)));
+		//Next up: Generate the sermon notes from the paragraph below the main block.
+		lines = sermonnotes / "\n";
+		//Again, we preprocess; in this case, to mark the intro and conc as getting
+		//less space (by bulleting them), while guarding the digits against listification.
+		foreach (lines; int i; string line)
+			if (sscanf(line, "%d. %s", int point, string txt) && txt)
+				lines[i] = sprintf("%d\\. %s", point, txt);
+			else
+				lines[i] = "* " + line;
+		//The first line becomes a heading, not a bullet point.
+		lines[0] = "###" + lines[0][1..];
+		Stdio.write_file(website + "/Service_Weekly/Sermon_Notes.md", string_to_utf8(sprintf(#"---
+layout: oos
+title: Sermon Notes
+---
+### Ashburton Presbyterian Church %s
+
+### %s
+%{
+%s
+%}", sermondate, person, lines)));
+		Process.create_process(({"git", "-C", website, "commit",
+			"Service_Weekly/Order_Of_Service.md", "Service_Weekly/Sermon_Notes.md",
+			"-mUpdate order of service and sermon notes from MPN"}))->wait();
 	}
 	//Nothing actually gets added to the slides.
 	return "";
