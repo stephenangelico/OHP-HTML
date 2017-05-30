@@ -54,7 +54,7 @@ TODO: Scripture references (<address> blocks) to get actual content (<aside>???)
 
 */
 string current = utf8_to_string(Stdio.read_file("slides.html"));
-string sermonnotes = "";
+string sermondate = "", service = 0, sermonnotes = "";
 
 string mpn_Welcome = #"<section class=\"welcome\" data-bg=\"SolidDirt.png\">
 <h3><img src=\"Cross.png\"> Ashburton Presbyterian Church</h3>
@@ -158,9 +158,42 @@ string mpn_Bible(string line)
 
 string mpn_Sermon(string line)
 {
-	return ""; //HACK - as of 20170324, sermon outlines aren't being done that way.
-	sscanf(line, "Sermon: %s (", string title);
-	return "<section>\n" + title + "\n" + sermonnotes + "\n</section>";
+	sscanf(line, "Sermon: %s (%s)", string title, string person);
+	person = (["Barry": "Barry Oakes"])[person] || person; //Un-shorthand where appropriate
+	//Attempt to update the sermon notes and order of service for the web site
+	string website = "../AshyPC.github.io"; //TODO maybe: allow multiple directory names
+	if (file_stat(website + "/Service_Weekly"))
+	{
+		array(string) lines = service / "\n";
+		//Go through the lines and bold the beginnings of (most of) them
+		//Also, Bible readings get enumerated.
+		int reading = 0;
+		foreach (lines; int i; string line)
+		{
+			if (sscanf(line, "Bible reading: %s", string info) && info)
+				lines[i] = sprintf("**Bible reading %d:** %s", ++reading, info);
+			else if (sscanf(line, "%s: %s", string prefix, string rest) && rest)
+				lines[i] = sprintf("**%s:** %s", prefix, rest);
+			else if (sscanf(line, "Hymn [%s] %s", string ref, string rest) && rest)
+				lines[i] = sprintf("**Hymn [%s]** %s", ref, rest);
+			else if (sscanf(line, "%s (%s", string main, string paren) && paren)
+				lines[i] = sprintf("**%s** (%s", main, paren);
+		}
+		Stdio.write_file(website + "/Service_Weekly/Order_Of_Service.md", sprintf(#"---
+layout: oos
+title: Order of Service
+---
+### Order of Service %s
+### %s
+
+%{%s
+
+%}**Exit**
+", sermondate, person, lines));
+		Process.run(({"git", "-C", website, "status"}));
+	}
+	//Nothing actually gets added to the slides.
+	return "";
 }
 
 string mpn_Video(string line)
@@ -249,10 +282,13 @@ int main(int argc, array(string) argv)
 	sscanf(utf8_to_string(mpn), "%d\0%s", int mpnindex, mpn); //Trim off the indexing headers
 
 	//Assume that MPN consists of several paragraphs, and pick the first one with a hymn.
-	string service;
 	foreach (mpn/"\n\n", string para)
-		if (!service && has_value(para, "\nHymn [")) service = para;
-		else if (service && sermonnotes=="") sermonnotes = para; //Not used for much
+	{
+		para = String.trim_all_whites(para);
+		if (!has_value(para, "\n") && has_prefix(para, "Sunday")) sermondate = para;
+		else if (!service && has_value(para, "\nHymn [")) service = para;
+		else if (service && has_value(para, "\n") && sermonnotes == "") sermonnotes = para;
+	}
 	if (!service) exit(1, "Unable to find Order of Service paragraph in MPN.\n");
 
 	array(string) parts = ({ });
