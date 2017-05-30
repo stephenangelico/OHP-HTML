@@ -190,7 +190,8 @@ title: Order of Service
 
 %}**Exit**
 ", sermondate, person, lines));
-		Process.run(({"git", "-C", website, "status"}));
+		Process.create_process(({"git", "-C", website, "commit", "Service_Weekly/Order_Of_Service.md",
+			"-mUpdate order of service from MPN"}))->wait();
 	}
 	//Nothing actually gets added to the slides.
 	return "";
