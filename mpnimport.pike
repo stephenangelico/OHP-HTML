@@ -71,6 +71,7 @@ string mpn_Church = ""; //Special case - Church Update (might never be used agai
 string mpn_Children = ""; //No automatic slides for the children's talk. If there are any, add them manually.
 string mpn_Offering = "";
 string mpn_The = ""; //The Lord's Supper. Probably should make this a function that verifies.
+string mpn_Communion = "";
 string mpn_Mission = "";
 string mpn_Benediction = "";
 string mpn_Exit = "";
