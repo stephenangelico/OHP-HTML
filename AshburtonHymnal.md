@@ -50,6 +50,7 @@
 | 47 | Jesus Paid It All |  | sixsteps Music |  |  |
 | 48 | Facing a Task Unfinished |  | Frank Houghton, Keith & Kristyn Getty |  | MP126 +refrain |
 | 49 | Jesus Is The King |  | Paul Sheely |  |  |
+| 50 | Here I Am To Worship |  | Hillsong Worship |  |  |
 
 R = Rejoice
 MP = Mission Praise
