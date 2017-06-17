@@ -314,7 +314,7 @@ int main(int argc, array(string) argv)
 		else if (!service && has_value(para, "\nHymn [")) service = para;
 		else if (service && has_value(para, "\n") && sermonnotes == "") sermonnotes = para;
 	}
-	if (!service) exit(1, "Unable to find Order of Service paragraph in MPN.\n");
+	if (!service) exit(1, "Unable to find Order of Service paragraph in MPN.\n(Are there colons before the hymn references again?)\n");
 
 	array(string) parts = ({ });
 	foreach (service/"\n", string line)
