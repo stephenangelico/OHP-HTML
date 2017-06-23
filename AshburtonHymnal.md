@@ -51,6 +51,8 @@
 | 48 | Facing a Task Unfinished |  | Frank Houghton, Keith & Kristyn Getty |  | MP126 +refrain |
 | 49 | Jesus Is The King |  | Paul Sheely |  |  |
 | 50 | Here I Am To Worship |  | Hillsong Worship |  |  |
+| 51 | O Church Arise |  | Keith & Kristyn Getty |  |  |
+| 52 | For The Cause |  | Keith & Kristyn Getty |  |  |
 
 R = Rejoice
 MP = Mission Praise
