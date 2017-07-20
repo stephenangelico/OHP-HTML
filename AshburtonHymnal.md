@@ -53,6 +53,7 @@
 |  50 | Here I Am To Worship			| 				| Hillsong Worship				| 		| 						|
 |  51 | O Church Arise				| 				| Keith & Kristyn Getty, Stuart Townend		| 		| 						|
 |  52 | For The Cause				| 				| Keith & Kristyn Getty				| 		| 						|
+|  53 | Create In Me A Clean Heart		|				| Keith Green					| Resource 434	|						|
 
 R = Rejoice
 MP = Mission Praise
