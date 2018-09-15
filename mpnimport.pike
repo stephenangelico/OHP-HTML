@@ -75,6 +75,12 @@ string mpn_Mission = "";
 string mpn_Benediction = "";
 string mpn_Exit = "";
 
+string mpn_Info(string line)
+{
+	sscanf(line, "Info: %s", string title);
+	return sprintf("<section class=black><address>%s</address></section>", title);
+}
+
 string mpn_Hymn(string line)
 {
 	sscanf(line, "Hymn%*[:] [%s] %s", string id, string titlehint);
