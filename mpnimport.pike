@@ -56,13 +56,12 @@ TODO: Scripture references (<address> blocks) to get actual content (<aside>???)
 string current = utf8_to_string(Stdio.read_file("slides.html"));
 string sermondate = "", service = 0, sermonnotes = "";
 
-string mpn_Welcome = #"<section class=\"welcome\" data-bg=\"SolidDirt.png\">
-<h3><img src=\"Cross.png\"> Ashburton Presbyterian Church</h3>
+string mpn_Welcome = #"<section class=\"welcome\" data-bg=\"EastCampLogo.png\">
+<p></p>
 <p></p>
 <p></p>
 <p></p>
 <h1>Welcome</h1>
-<footer>Finding solid ground in Christ</footer>
 </section>";
 string mpn_Opening = ""; //Opening Prayer
 string mpn_Prayer = "";
@@ -302,7 +301,7 @@ int main(int argc, array(string) argv)
 		return 0;
 	}
 
-	string mpn; catch {mpn = Protocols.HTTP.get_url_data("http://gideon.rosuav.com:8000/mpn/sundaymusic.0");};
+	string mpn; catch {mpn = Protocols.HTTP.get_url_data("http://gideon.rosuav.com:8000/mpn/eastcampsession.0");};
 	if (!mpn) exit(1, "Unable to retrieve MPN - are you offline?\n");
 	sscanf(utf8_to_string(mpn), "%d\0%s", int mpnindex, mpn); //Trim off the indexing headers
 
