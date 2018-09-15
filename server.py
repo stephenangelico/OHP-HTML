@@ -30,7 +30,7 @@ class Room:
 		self.clients.append(ws)
 		print("New socket in %s (now %d)" % (self.id, len(self.clients)))
 
-		ws.send_json({"type": "position", "data": self.position});
+		await ws.send_json({"type": "position", "data": self.position});
 		async for msg in ws:
 			# Ignore non-JSON messages
 			if msg.type != WSMsgType.TEXT: continue
@@ -45,7 +45,7 @@ class Room:
 			if resp is None: continue
 			for client in self.clients:
 				if client is not ws: # Announce only to others, to prevent hysteresis
-					client.send_json(resp)
+					await client.send_json(resp)
 
 		self.clients.remove(ws)
 		await ws.close()
