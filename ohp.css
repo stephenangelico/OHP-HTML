@@ -15,8 +15,8 @@ section {
 	width: calc(100% - 40px);
 	height: calc(100% - 40px);
 	display: none;
-	background-color: #101040;
-	color: #F0F0C0;
+	background-color: black;
+	color: gold;
 	margin: 0;
 	padding: 20px;
 	font-size: 250%;
