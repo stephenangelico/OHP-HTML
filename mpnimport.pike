@@ -56,13 +56,12 @@ TODO: Scripture references (<address> blocks) to get actual content (<aside>???)
 string current = utf8_to_string(Stdio.read_file("slides.html"));
 string sermondate = "", service = 0, sermonnotes = "";
 
-string mpn_Welcome = #"<section class=\"welcome\" data-bg=\"EastCampLogo.png\">
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<h1>Welcome</h1>
-</section>";
+string mpn_Welcome(string line)
+{
+	sscanf(line, "Welcome: %s", string title);
+	return sprintf("<section><address>%s</address></section>", title);
+}
+
 string mpn_Opening = ""; //Opening Prayer
 string mpn_Prayer = "";
 string mpn_Announcements = "";
@@ -78,7 +77,7 @@ string mpn_Exit = "";
 string mpn_Info(string line)
 {
 	sscanf(line, "Info: %s", string title);
-	return sprintf("<section class=black><address>%s</address></section>", title);
+	return sprintf("<section><address>%s</address></section>", title);
 }
 
 string mpn_Hymn(string line)
