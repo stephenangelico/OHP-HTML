@@ -156,9 +156,9 @@ string mpn_Hymn(string line)
 
 string mpn_Bible(string line)
 {
-	sscanf(line, "Bible reading: %s (page%[s] %[-, 0-9])", string ref, string plural, string page);
-	if (!ref || !page) error("Unable to parse Scripture reading: %O\n", line);
-	return sprintf("<section><address>%s\npage%s %s</address></section>", ref, plural, page);
+	sscanf(line, "Bible reading: %s", string ref);
+	if (!ref) error("Unable to parse Scripture reading: %O\n", line);
+	return sprintf("<section><address>%s</address></section>", ref);
 }
 
 string mpn_Sermon(string line)
