@@ -59,7 +59,7 @@ string sermondate = "", service = 0, sermonnotes = "";
 string mpn_Welcome(string line)
 {
 	sscanf(line, "Welcome: %s", string title);
-	return sprintf("<section><address>%s</address></section>", title);
+	return sprintf("<section class=\"welcome\" data-bg=\"Cave_of_wonders_inside.jpg\"><address>%s</address></section>", title);
 }
 
 string mpn_Opening = ""; //Opening Prayer
@@ -77,7 +77,7 @@ string mpn_Exit = "";
 string mpn_Info(string line)
 {
 	sscanf(line, "Info: %s", string title);
-	return sprintf("<section><address>%s</address></section>", title);
+	return sprintf("<section class=\"welcome\" data-bg=\"Cave_of_wonders_inside.jpg\"><address>%s</address></section>", title);
 }
 
 string mpn_Hymn(string line)
